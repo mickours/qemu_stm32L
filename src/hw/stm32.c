@@ -42,7 +42,6 @@ typedef const struct {
 } stellaris_board_info;
 
 
-
 /* System controller.  */
 
 typedef struct {
@@ -107,6 +106,7 @@ static uint32_t pllcfg_fury[16] = {
     0xb11c /* 8.192 Mhz */
 };
 
+/*
 #define DID0_VER_MASK        0x70000000
 #define DID0_VER_0           0x00000000
 #define DID0_VER_1           0x10000000
@@ -127,12 +127,13 @@ static int ssys_board_class(const ssys_state *s)
         case DID0_CLASS_FURY:
             return did0 & DID0_CLASS_MASK;
         }
-        /* for unknown classes, fall through */
+        // for unknown classes, fall through
     default:
         hw_error("ssys_board_class: Unknown class 0x%08x\n", did0);
     }
 }
 
+*/
 static uint32_t ssys_read(void *opaque, target_phys_addr_t offset)
 {
     ssys_state *s = (ssys_state *)opaque;
