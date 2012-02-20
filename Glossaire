@@ -1,0 +1,46 @@
+GLOSSAIRE:
+
+### A ###
+ADC: Analog-to-Digital Converter
+AHB-Bridge: 
+APB-Bridge:
+
+### B ###
+I-Bus: Instruction Bus
+D-Bus: Data Bus (Memory Access Flash/RAM)
+S-Bus: System Bus
+Bus matrix: Répartition des données dans les bus
+
+### C ###
+CSS: Clock Security System
+
+### D ###
+DMA: Direct Memory Access
+
+### G ###
+GPIO: General-Purpose Input/Output
+GPTM: General-Purpose Timer
+
+### H ###
+HSE: High-speed external oscillator clock
+HSI: High-speed internal oscillator clock
+
+### I ###
+I2C: Inter Integrated Circuit
+InitRD: Initial RamDisk
+
+### M ###
+MSI: Multispeed internal oscillator clock
+
+### N ###
+NVIC: Nested Vectored Interrupt Controller
+
+### R ###
+RCC: Reset and Clock Control
+RCC_CIR: Clock Interrupt Register
+RCC_CR: Clock control register
+
+### S ###
+SPI: Serial Peripheral Interface
+SSI: Synchronous Serial Interface
+SYSCLK: System Clock
