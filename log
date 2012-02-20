@@ -1,0 +1,24 @@
+Avant
+	* Création du dépot GIT
+	* prise en main de la carte STM32L Discovery
+	* Compréhension de l'API de Qemu à partir de stellaris.c et du wiki Air 
+		http://air.imag.fr/mediawiki/index.php/Stellaris_Luminary_Lm3s6965
+	
+
+7/02/2012
+	* Création et début de rédaction du fichier stm32.c dans hw
+
+
+20/02/2012
+Fait :
+	* Compilation et modification du fichier stm32
+	* initialisation des gpio -> interruption non gérée
+	* recherche sur les interruptions
+
+TODO :
+	* instaler compilateur cross platforme "arm-none-eabi-gcc"
+	* compiler et tester avec blink (main.c dans la racine)
+	* voir en fonction des résultats
+	* se documenter sur le moniteur Qemu
+	* ecrire un programme d'observation utilisant les données du moniteur
+
