@@ -11,13 +11,13 @@ CFLAGS_L=$(DEF_CFLAGS) -mcpu=cortex-m3 -DCONFIG_STM32L_DISCOVERY
 all: blink_32L.elf
 
 %.bin: %.elf
-$(OBJCOPY) -O binary $^ $@
+	$(OBJCOPY) -O binary $^ $@
 
 blink_32L.elf: main.c
-$(CC) $(CFLAGS_L) $^ -o $@
+	$(CC) $(CFLAGS_L) $^ -o $@
 
 clean:
-rm -rf *.elf
-rm -rf *.bin
+	rm -rf *.elf
+	rm -rf *.bin
 
 .PHONY: all clean
