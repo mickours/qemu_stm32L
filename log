@@ -15,6 +15,13 @@ Fait :
 	* initialisation des gpio -> interruption non gérée
 	* recherche sur les interruptions
 
+
+21/02/2012
+Fait :
+	* Compilation et test du fichier blink
+	* Debuggage de l'émulation
+	* Rem: Absence de la fonction sys_init
+
 TODO :
 	* instaler compilateur cross platforme "arm-none-eabi-gcc"
 	* compiler et tester avec blink (main.c dans la racine)

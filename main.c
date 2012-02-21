@@ -12,22 +12,6 @@ typedef unsigned int uint32_t;
 #define LED_BLUE (1 << 6) /* port B, pin 6 */
 #define LED_GREEN (1 << 7) /* port B, pin 7 */
 
-static inline void setup_leds(void)
-{
-  /* configure port 6 and 7 as output */
-  *(volatile uint32_t*)GPIOB_MODER |= (1 << (7 * 2)) | (1 << (6 * 2));
-}
-
-static inline void switch_leds_on(void)
-{
-  *(volatile uint32_t*)LED_PORT_ODR = LED_BLUE | LED_GREEN;
-}
-
-static inline void switch_leds_off(void)
-{
-  *(volatile uint32_t*)LED_PORT_ODR = 0;
-}
-
 #define delay()						\
 do {							\
   register unsigned int i;				\
@@ -37,13 +21,13 @@ do {							\
 
 void main(void)
 {
-  setup_leds();
+  *(volatile uint32_t*)GPIOB_MODER |= (1 << (7 * 2)) | (1 << (6 * 2));
 
   while (1)
   {
-    switch_leds_on();
+    *(volatile uint32_t*)LED_PORT_ODR = LED_BLUE | LED_GREEN;
     delay();
-    switch_leds_off();
+    *(volatile uint32_t*)LED_PORT_ODR = 0;
     delay();
   }
 }
