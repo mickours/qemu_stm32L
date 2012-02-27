@@ -21,11 +21,14 @@ Fait :
 	* Compilation et test du fichier blink
 	* Debuggage de l'émulation
 	* Rem: Absence de la fonction sys_init
+	
+27/02/2012
+Fait :
+	* Deboggage de l'émulation
+	* Début de réalisation du peripherique GPIO
+	
 
 TODO :
-	* instaler compilateur cross platforme "arm-none-eabi-gcc"
-	* compiler et tester avec blink (main.c dans la racine)
-	* voir en fonction des résultats
 	* se documenter sur le moniteur Qemu
 	* ecrire un programme d'observation utilisant les données du moniteur
 
