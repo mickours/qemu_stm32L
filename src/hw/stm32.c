@@ -42,7 +42,7 @@ static void ssys_update(ssys_state *s)
 
 static void ssys_reset(void *opaque)
 {
-    ssys_state *s = (ssys_state *)opaque;
+    //ssys_state *s = (ssys_state *)opaque;
 }
 
 static uint32_t ssys_read(void *opaque, target_phys_addr_t offset)
@@ -87,7 +87,7 @@ static CPUWriteMemoryFunc * const ssys_writefn[] = {
 
 static int stm32_sys_post_load(void *opaque, int version_id)
 {
-    ssys_state *s = opaque;
+    //ssys_state *s = opaque;
 
     //Nothing to do
     
@@ -164,9 +164,14 @@ static void stm32l152rbt6_init(ram_addr_t ram_size,
 
     stm32l_sys_init(0x1FF00000, pic[28], &stm32_board); //TODO: Vérifier pic[28]
     
+    
+    //Initialisation du GPIO_B
+    gpio_dev[1] = sysbus_create_simple("stm32_gpio_B", gpio_addr[1], NULL);
+    
+
     for (i = 0; i < NB_GPIO; i++) {
         //gpio_dev[i] = sysbus_create_simple("pl061", gpio_addr[i], pic[gpio_irq[i]]);
-        gpio_dev[i] = sysbus_create_simple("pl061", gpio_addr[i], NULL);
+        //gpio_dev[i] = sysbus_create_simple("pl061", gpio_addr[i], NULL);
         for (j = 0; j < 8; j++) {
             //gpio_in[i][j] = qdev_get_gpio_in(gpio_dev[i], j);
             gpio_out[i][j] = NULL;
@@ -180,6 +185,8 @@ static void stm32l152rbt6_init(ram_addr_t ram_size,
             }
         }
     }
+ 
+    
 }
 
 static QEMUMachine stm32l152rbt6_machine = {

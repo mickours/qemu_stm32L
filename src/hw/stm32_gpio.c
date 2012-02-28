@@ -17,7 +17,7 @@ typedef struct {
 
     qemu_irq irq;
     qemu_irq out[8];
-    const unsigned char id;
+    unsigned char id;
 } stm32_gpio_state;
 
 static const VMStateDescription vmstate_stm32_gpio = {
@@ -30,8 +30,8 @@ static const VMStateDescription vmstate_stm32_gpio = {
         VMSTATE_UINT32(otype, stm32_gpio_state),
         VMSTATE_UINT32(ospeed, stm32_gpio_state),
         VMSTATE_UINT32(pupd, stm32_gpio_state),
-        VMSTATE_UINT32(id, stm32_gpio_state),
-        VMSTATE_UINT32(od, stm32_gpio_state),
+        VMSTATE_UINT32(ind, stm32_gpio_state),
+        VMSTATE_UINT32(outd, stm32_gpio_state),
         VMSTATE_UINT32(bsr, stm32_gpio_state),
         VMSTATE_UINT32(lck, stm32_gpio_state),
         VMSTATE_UINT32(afrl, stm32_gpio_state),
@@ -62,13 +62,14 @@ static void stm32_gpio_write(void *opaque, target_phys_addr_t offset,
         uint32_t value) {
     stm32_gpio_state *s = (stm32_gpio_state *) opaque;
 
+    uint32_t tmp, old;
     switch (offset) {
-        case 0x00: /* Mode */
+        case 0x00 : /* Mode */
             s->mode = value;
             break;
         case 0x14: /* Output data on the 16 lower bit*/
-            uint32_t tmp = value & 0x0000ffff;
-            uint32_t old = s->outd & 0xffff0000;
+            tmp = value & 0x0000ffff;
+            old = s->outd & 0xffff0000;
             s->outd = tmp | old;
             break;
         default:

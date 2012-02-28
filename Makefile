@@ -1,7 +1,7 @@
 CC=arm-none-eabi-gcc
 OBJCOPY=arm-none-eabi-objcopy
 
-DEF_CFLAGS=-g -O2 -mlittle-endian -mthumb -ffreestanding -nostdlib -nostdinc
+DEF_CFLAGS=-g -mlittle-endian -mthumb -ffreestanding -nostdlib -nostdinc
 
 # to run from SRAM
 DEF_CFLAGS+=-Wl,-Ttext,0x20000000 -Wl,-e,0x20000000
