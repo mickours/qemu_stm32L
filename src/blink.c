@@ -1,11 +1,10 @@
 /* missing type */
-//#include "stm32l1xx.h"
 typedef unsigned int uint32_t;
 
 
 /* hardware configuration */
 
-
+#define RCC_AHBENR 0x4002381c
 #define GPIOB 0x40020400 /* port B */
 #define GPIOB_MODER (GPIOB + 0x00) /* port mode register */
 #define LED_PORT_ODR (GPIOB + 0x14) /* port output data register */
@@ -17,6 +16,7 @@ typedef unsigned int uint32_t;
 
 static inline void setup_leds(void)
 {
+  *(volatile uint32_t*)RCC_AHBENR |= (1 << 1); /*Activation de l'horloge du port B*/
   /* configure port 6 and 7 as output */
   *(volatile uint32_t*)GPIOB_MODER |= (1 << (7 * 2)) | (1 << (6 * 2));
 }
@@ -41,7 +41,6 @@ __asm__ __volatile__ ("nop\n\t":::"memory"); \
 /* static void __attribute__((naked)) __attribute__((used)) main(void) */
 void main(void)
 {
-  RCC->AHBENR |= (1 << 1); /*Activation de l'horloge du port B*/
   setup_leds();
 
   while (1)
