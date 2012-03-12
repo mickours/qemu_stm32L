@@ -32,9 +32,15 @@ Fait :
 	* Decouverte d'un autre programme de test
 	* Test du programme reussi avec ajout de RCC->AHBEND
 	
-
+12/03/2012
+	* chardev implémenter sur le GPIO B
+	* gestion des IRQ de sorties des GPIO
+	* Emulation sommaire du RCC
+	* Programme de test basique en python cree
+	
 TODO :
-	* Apprendre à utiliser quemu_char
-	* Emuler RCC
 	* Faire un programme de Démo jolie pour Donzet
+	* Compléter le Wiki
+	* Finir le dossier de GL
+	* Faire les tests des gpios
 
