@@ -17,8 +17,13 @@ typedef struct {
 
     qemu_irq irq;
     qemu_irq out[8];
+    uint8_t data; /* Etat des pins dans la partie basse */
+    uint8_t old_data; /* Etat des pins avant update */
     unsigned char id;
+    
+    CharDriverState *chr; /* Char device */
 } stm32_gpio_state;
+
 
 static const VMStateDescription vmstate_stm32_gpio = {
     .name = "stm32_gpio",
@@ -40,9 +45,33 @@ static const VMStateDescription vmstate_stm32_gpio = {
     }
 };
 
+
 static void stm32_gpio_update(stm32_gpio_state *s) {
-    /* FIXME: Implement interrupts.  */
+    uint8_t changed;
+    uint8_t mask;
+    int i;
+
+    /* Outputs float high.  */
+    /* FIXME: This is board dependent.  */
+    changed = s->old_data ^ s->data; //XOR: Tous les bits à 0 seront les bits changés
+    changed = ~changed; //NOT: Tous les bits à 1 seront les bits changés
+    
+    if (!changed)
+        return;
+
+    s->old_data = s->data;
+    for (i = 0; i < 8; i++) {
+        mask = 1 << i;
+        if (changed & mask) {
+            //DPRINTF("Set output %d = %d\n", i, (out & mask) != 0);
+            qemu_set_irq(s->out[i], (s->data & mask) != 0);
+        }
+    }
+    if (s->chr) {
+        qemu_chr_fe_write(s->chr, &s->data, 1);
+    }
 }
+
 
 static uint32_t stm32_gpio_read(void *opaque, target_phys_addr_t offset) {
     stm32_gpio_state *s = (stm32_gpio_state *) opaque;
@@ -58,8 +87,8 @@ static uint32_t stm32_gpio_read(void *opaque, target_phys_addr_t offset) {
     }
 }
 
-static void stm32_gpio_write(void *opaque, target_phys_addr_t offset,
-        uint32_t value) {
+
+static void stm32_gpio_write(void *opaque, target_phys_addr_t offset, uint32_t value) {
     stm32_gpio_state *s = (stm32_gpio_state *) opaque;
 
     uint32_t tmp, old;
@@ -78,6 +107,7 @@ static void stm32_gpio_write(void *opaque, target_phys_addr_t offset,
     stm32_gpio_update(s);
 }
 
+
 static void stm32_gpio_reset(stm32_gpio_state *s) {
     switch (s->id) {
         case 'B':
@@ -93,6 +123,9 @@ static void stm32_gpio_reset(stm32_gpio_state *s) {
 
 static void stm32_gpio_set_irq(void * opaque, int irq, int level) {
     //stm32_gpio_state *s = (stm32_gpio_state *) opaque;
+    //Une pin à changer d'état (quand configurée en entrée
+    //irq: num pin (1->8)
+    //level: nouvel état
 
 }
 
@@ -108,6 +141,34 @@ static CPUWriteMemoryFunc * const stm32_gpio_writefn[] = {
     stm32_gpio_write
 };
 
+static int stm32_can_receive(void *opaque)
+{
+    return 1;
+/*
+    stm32_gpio_state *s = (stm32_gpio_state *)opaque;
+
+    if (s->lcr & 0x10)
+        return s->read_count < 16;
+    else
+        return s->read_count < 1;
+*/
+}
+
+static void stm32_receive(void *opaque, const uint8_t *buf, int size)
+{
+/*
+    pl011_put_fifo(opaque, *buf);
+*/
+}
+
+static void stm32_event(void *opaque, int event)
+{
+/*
+    if (event == CHR_EVENT_BREAK)
+        pl011_put_fifo(opaque, 0x400);
+*/
+}
+
 static int stm32_gpio_init(SysBusDevice *dev, const unsigned char id) {
     int iomemtype;
     stm32_gpio_state *s = FROM_SYSBUS(stm32_gpio_state, dev);
@@ -119,9 +180,15 @@ static int stm32_gpio_init(SysBusDevice *dev, const unsigned char id) {
     sysbus_init_irq(dev, &s->irq);
     qdev_init_gpio_in(&dev->qdev, stm32_gpio_set_irq, 8);
     qdev_init_gpio_out(&dev->qdev, s->out, 8);
+    
+    s->chr = qdev_init_chardev(&dev->qdev);
+    if (s->chr) {
+        qemu_chr_add_handlers(s->chr, stm32_can_receive, stm32_receive, stm32_event, s);
+    }
     stm32_gpio_reset(s);
     return 0;
 }
+
 
 static int stm32_gpio_init_B(SysBusDevice *dev) {
     return stm32_gpio_init(dev, 'B');
