@@ -27,8 +27,14 @@ Fait :
 	* Deboggage de l'émulation
 	* Début de réalisation du peripherique GPIO
 	
+05 et 06/03/2012
+	* Test du programme Blink sur la carte ECHEC
+	* Decouverte d'un autre programme de test
+	* Test du programme reussi avec ajout de RCC->AHBEND
+	
 
 TODO :
-	* se documenter sur le moniteur Qemu
-	* ecrire un programme d'observation utilisant les données du moniteur
+	* Apprendre à utiliser quemu_char
+	* Emuler RCC
+	* Faire un programme de Démo jolie pour Donzet
 
