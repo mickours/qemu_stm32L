@@ -38,6 +38,11 @@ Fait :
 	* Emulation sommaire du RCC
 	* Programme de test basique en python cree
 	
+19/03/2012
+	* Attention, Stellaris utilise la flash à l'@ 0x00000000 alors que STM
+	  utilise la flash à l'@ 0x08000000 -> Force le jumper en position flash
+	  (cf Ref: p42)
+	
 TODO :
 	* Faire un programme de Démo jolie pour Donzet
 	* Compléter le Wiki

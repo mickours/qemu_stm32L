@@ -14,7 +14,7 @@
 #define GPIO_E 4 //0x4002 1000 - 0x4002 13FF
 #define GPIO_H 5 //0x4002 1400 - 0x4002 17FF
 
-typedef const struct {
+typedef const struct { 
     const char *name;
     uint16_t f_size;
 } stm32_board_info;
@@ -167,9 +167,12 @@ static void stm32l152rbt6_init(ram_addr_t ram_size,
     
     //Initialisation du GPIO_B
     gpio_dev[1] = sysbus_create_simple("stm32_gpio_B", gpio_addr[1], NULL);
-    
+    for(j=0; j<8; j++) {
+        qdev_connect_gpio_out(gpio_dev[1], j, gpio_out[1][j]);
+    }
 
-    for (i = 0; i < NB_GPIO; i++) {
+    /*
+     for (i = 0; i < NB_GPIO; i++) {
         //gpio_dev[i] = sysbus_create_simple("pl061", gpio_addr[i], pic[gpio_irq[i]]);
         //gpio_dev[i] = sysbus_create_simple("pl061", gpio_addr[i], NULL);
         for (j = 0; j < 8; j++) {
@@ -185,7 +188,7 @@ static void stm32l152rbt6_init(ram_addr_t ram_size,
             }
         }
     }
- 
+    */
     
 }
 
@@ -206,5 +209,4 @@ static void stm32l_register_devices(void) {
 }
 
 device_init(stm32l_register_devices)
-
 

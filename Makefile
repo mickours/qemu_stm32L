@@ -4,7 +4,7 @@
 #
 
 # Using the CodeSourcery 2009q3 Lite ARM EABI tools
-CROSS_COMPILE = /home/mickours/App/CodeBench/bin/arm-none-eabi-
+CROSS_COMPILE = arm-none-eabi-
 CC = $(CROSS_COMPILE)gcc
 OBJCOPY = $(CROSS_COMPILE)objcopy
 
@@ -14,20 +14,16 @@ STARTUP = startup_stm32l1xx_md.s
 CFLAGS = -mcpu=cortex-m3 -mthumb -O -g
 
 # List of all binaries to build
-all: hello.bin
+all: main.bin
 
 # Create a raw binary file from the ELF version
-hello.bin: hello.elf
+main.bin: main.elf
 	$(OBJCOPY) -O binary $< $@
 
 # Create the ELF version by mixing together the startup file,
 # application, and linker file
-hello.elf: $(STARTUP) hello.c
-	$(CC) -o $@ $(CFLAGS) -nostartfiles -Wl,-Tstm32.ld $^
-
-# Program the binary to the board using the builtin serial bootloader
-program:
-	stm32loader.py -p /dev/ttyUSB0 -ewv hello.bin
+main.elf: $(STARTUP) main.c
+	$(CC) -o $@ $(CFLAGS) -nostartfiles -Wl,-stm32_flash.ld $^
 
 # Remove the temporary files
 clean:

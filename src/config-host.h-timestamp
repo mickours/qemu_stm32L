@@ -14,6 +14,7 @@
 #define CONFIG_LINUX 1
 #define CONFIG_SLIRP 1
 #define CONFIG_SMBD_COMMAND "/usr/sbin/smbd"
+#define CONFIG_VDE 1
 #define CONFIG_AC97 1
 #define CONFIG_ES1370 1
 #define CONFIG_SB16 1
@@ -53,7 +54,6 @@
 #define CONFIG_INOTIFY1 1
 #define CONFIG_BYTESWAP_H 1
 #define CONFIG_CURL 1
-#define CONFIG_BRLAPI 1
 #define CONFIG_BLUEZ 1
 #define CONFIG_ATTR 1
 #define CONFIG_VIRTFS 1

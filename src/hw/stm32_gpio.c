@@ -2,7 +2,7 @@
 
 typedef struct {
     SysBusDevice busdev;
-
+ 
     /* Registres GPIO (Reference Manual p119 */
     uint32_t mode; /* Mode */
     uint32_t otype; /* Output type */
