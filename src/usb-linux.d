@@ -47,11 +47,11 @@ usb-linux.o: usb-linux.c qemu-common.h compiler.h config-host.h \
  /usr/include/glib-2.0/glib/gurifuncs.h \
  /usr/include/glib-2.0/glib/gvarianttype.h \
  /usr/include/glib-2.0/glib/gvariant.h qemu-os-posix.h osdep.h bswap.h \
- /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h \
- config-host.h module.h qemu-timer.h main-loop.h notify.h qemu-queue.h \
- qemu-barrier.h monitor.h qemu-char.h qemu-option.h qdict.h qobject.h \
- qlist.h qemu-config.h qstring.h qerror.h qemu-error.h error.h block.h \
- qemu-aio.h qemu-coroutine.h sysemu.h qapi-types.h qapi/qapi-types-core.h \
+ /home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h config-host.h \
+ module.h qemu-timer.h main-loop.h notify.h qemu-queue.h qemu-barrier.h \
+ monitor.h qemu-char.h qemu-option.h qdict.h qobject.h qlist.h \
+ qemu-config.h qstring.h qerror.h qemu-error.h error.h block.h qemu-aio.h \
+ qemu-coroutine.h sysemu.h qapi-types.h qapi/qapi-types-core.h \
  qemu-common.h error.h monitor.h trace.h hw/usb.h block.h hw/qdev.h \
  hw/hw.h ioport.h qemu-common.h iorange.h hw/irq.h qemu-queue.h \
  qemu-char.h qemu-option.h
@@ -198,7 +198,7 @@ osdep.h:
 
 bswap.h:
 
-/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h:
+/home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h:
 
 config-host.h:
 

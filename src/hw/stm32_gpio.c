@@ -27,7 +27,7 @@ typedef struct {
 
 static const VMStateDescription vmstate_stm32_gpio = {
     .name = "stm32_gpio",
-    .version_id = 2,
+    .version_id = 1,
     .minimum_version_id = 1,
     .fields = (VMStateField[])
     {
@@ -64,7 +64,7 @@ static void stm32_gpio_update(stm32_gpio_state *s) {
         mask = 1 << i;
         if (changed & mask) {
             //DPRINTF("Set output %d = %d\n", i, (out & mask) != 0);
-            qemu_set_irq(s->out[i], (s->data & mask) != 0);
+            //qemu_set_irq(s->out[i], (s->data & mask) != 0);
         }
     }
     if (s->chr) {
@@ -186,6 +186,9 @@ static int stm32_gpio_init(SysBusDevice *dev, const unsigned char id) {
         qemu_chr_add_handlers(s->chr, stm32_can_receive, stm32_receive, stm32_event, s);
     }
     stm32_gpio_reset(s);
+    
+    vmstate_register(&dev->qdev, -1, &vmstate_stm32_gpio, s);
+    
     return 0;
 }
 

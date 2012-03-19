@@ -47,15 +47,15 @@ ui/vnc-enc-zrle.o: ui/vnc-enc-zrle.c ui/vnc.h qemu-common.h compiler.h \
  /usr/include/glib-2.0/glib/gurifuncs.h \
  /usr/include/glib-2.0/glib/gvarianttype.h \
  /usr/include/glib-2.0/glib/gvariant.h qemu-os-posix.h osdep.h bswap.h \
- /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h \
- config-host.h module.h qemu-queue.h qemu-barrier.h console.h qemu-char.h \
- qemu-common.h qemu-queue.h qemu-option.h qdict.h qobject.h qlist.h \
- qemu-config.h qstring.h main-loop.h notify.h qerror.h qemu-error.h \
- error.h monitor.h block.h qemu-aio.h qemu-coroutine.h monitor.h \
- audio/audio.h bitmap.h bitops.h ui/keymaps.h ui/vnc-palette.h qlist.h \
- ui/vnc-enc-zrle.h ui/vnc-tls.h acl.h ui/vnc-auth-vencrypt.h \
- ui/vnc-auth-sasl.h ui/vnc-enc-zrle-template.c \
- ui/vnc-enc-zywrle-template.c ui/vnc-enc-zywrle.h
+ /home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h config-host.h \
+ module.h qemu-queue.h qemu-barrier.h console.h qemu-char.h qemu-common.h \
+ qemu-queue.h qemu-option.h qdict.h qobject.h qlist.h qemu-config.h \
+ qstring.h main-loop.h notify.h qerror.h qemu-error.h error.h monitor.h \
+ block.h qemu-aio.h qemu-coroutine.h monitor.h audio/audio.h bitmap.h \
+ bitops.h ui/keymaps.h ui/vnc-palette.h qlist.h ui/vnc-enc-zrle.h \
+ ui/vnc-tls.h acl.h ui/vnc-auth-vencrypt.h ui/vnc-auth-sasl.h \
+ ui/vnc-enc-zrle-template.c ui/vnc-enc-zywrle-template.c \
+ ui/vnc-enc-zywrle.h
 
 ui/vnc.h:
 
@@ -201,7 +201,7 @@ osdep.h:
 
 bswap.h:
 
-/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h:
+/home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h:
 
 config-host.h:
 
