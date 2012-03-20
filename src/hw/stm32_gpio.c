@@ -10,6 +10,7 @@ typedef struct {
     uint32_t pupd; /* Pull-up/Pull-down */
     uint32_t ind; /* Input data */
     uint32_t outd; /* Output data register */
+    uint32_t outd_old;
     uint32_t bsr; /* Bit set/reset */
     uint32_t lck; /* Lock */
     uint32_t afrl; /* Alternate function low */
@@ -17,8 +18,6 @@ typedef struct {
 
     qemu_irq irq;
     qemu_irq out[8];
-    uint8_t data; /* Etat des pins dans la partie basse */
-    uint8_t old_data; /* Etat des pins avant update */
     unsigned char id;
     
     CharDriverState *chr; /* Char device */
@@ -47,19 +46,17 @@ static const VMStateDescription vmstate_stm32_gpio = {
 
 
 static void stm32_gpio_update(stm32_gpio_state *s) {
-    uint8_t changed;
-    uint8_t mask;
+    uint32_t changed;
+    uint32_t mask;
     int i;
 
     /* Outputs float high.  */
     /* FIXME: This is board dependent.  */
-    changed = s->old_data ^ s->data; //XOR: Tous les bits à 0 seront les bits changés
-    changed = ~changed; //NOT: Tous les bits à 1 seront les bits changés
-    
+    changed = s->outd_old ^ s->outd; //XOR: Tous les bits à 1 seront les bits changés
     if (!changed)
         return;
 
-    s->old_data = s->data;
+    s->outd_old = s->outd;
     for (i = 0; i < 8; i++) {
         mask = 1 << i;
         if (changed & mask) {
@@ -68,7 +65,10 @@ static void stm32_gpio_update(stm32_gpio_state *s) {
         }
     }
     if (s->chr) {
-        qemu_chr_fe_write(s->chr, &s->data, 1);
+        uint8_t buffer;
+        buffer = (uint8_t)s->outd & 0x000000FF;
+        printf("Changement GPIO %d\n", buffer);
+        qemu_chr_fe_write(s->chr, &buffer, 1);
     }
 }
 
@@ -181,9 +181,13 @@ static int stm32_gpio_init(SysBusDevice *dev, const unsigned char id) {
     qdev_init_gpio_in(&dev->qdev, stm32_gpio_set_irq, 8);
     qdev_init_gpio_out(&dev->qdev, s->out, 8);
     
-    s->chr = qdev_init_chardev(&dev->qdev);
+    //s->chr = qdev_init_chardev(&dev->qdev);
+    s->chr = qemu_chr_find("B");
     if (s->chr) {
         qemu_chr_add_handlers(s->chr, stm32_can_receive, stm32_receive, stm32_event, s);
+    } else {
+        printf("Device not found");
+        exit(0);
     }
     stm32_gpio_reset(s);
     
