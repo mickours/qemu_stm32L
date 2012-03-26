@@ -1,5 +1,6 @@
 import Tkinter
 import socket
+import threading
 from Tkinter import PhotoImage
 
 class UI(Tkinter.Tk):
@@ -16,8 +17,8 @@ class UI(Tkinter.Tk):
         
         self.fichier = Tkinter.Menu(tearoff=0)
         self.menu1.add_cascade(label="Fichier",menu=self.fichier)
-        self.fichier.add_command(label="  Reinitialiser", command=self.initialize)
-        self.fichier.add_command(label="  Quitter", command=self.quit)
+        #self.fichier.add_command(label="  Reinitialiser", command=app.reinit)
+        self.fichier.add_command(label="  Quitter", command=self.quitter)
         self.fichier = Tkinter.Menu(tearoff=0)
         self.menu1.add_cascade(label="Aide",menu=self.fichier)
         self.fichier.add_command(label="  Utilisation", command=self.use)
@@ -72,8 +73,19 @@ class UI(Tkinter.Tk):
         #self.geometry(self.geometry())
         
     def OnButtonConnexionClick(self):
-        self.labelVariableCo.set("Initialisation...")
-        app.clicked()
+        if not hasattr(app,'thread'):
+            self.labelVariableCo.set("Initialisation...")
+            app.thread=threading.Thread(target=app.clicked)
+            app.thread.setDaemon(True)
+            app.thread.start()
+    
+    def quitter(self):
+        if hasattr(app,'thread') :
+            app.close_conn()
+        self.quit()
+            
+    def printerror(self):
+        pass
         
     def apropos(self):
         pass
@@ -85,21 +97,26 @@ class Ctrl:
     def __init__(self,parent):
         self.ui = UI(parent)
         
+    def close_conn(self):
+        if hasattr(self,'conn') :
+            self.conn.close()
+            self.ui.labelVariableCo.set("Non connecte")
+        
         
     def traiterrecv(self):
-        self.ui.canvas.itemconfigure(self.ledGauche, image=self.ledBleue)
-        self.ui.canvas.itemconfigure(self.ledDroite, image=self.ledVerte)
-        
         while 1:
             data = self.conn.recv(4)
             if not data: break
+            
+            if data == 0:
+                self.ui.canvas.itemconfigure(self.ui.ledGauche, image=self.ui.ledBlanche)
+                self.ui.canvas.itemconfigure(self.ui.ledDroite, image=self.ui.ledBlanche) 
+            if data == 192:
+                self.ui.canvas.itemconfigure(self.ledGauche, image=self.ledBleue)
+                self.ui.canvas.itemconfigure(self.ledDroite, image=self.ledVerte)
+            else:
+                self.ui.printerror()
     
-            index = 0
-            while index < len(data):
-                print ord(data[index])
-                index = index +1
-        
-        
     def clicked(self):
         self.serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.serversocket.bind((socket.gethostname(), int(self.ui.entryVariablePort.get())))
@@ -110,13 +127,13 @@ class Ctrl:
         self.ui.labelVariableCo.set("Connecte a : " +self.addr)
         self.ui.update()
         self.traiterrecv()
-        self.conn.close()
-        self.ui.labelVariableCo.set("Non connecte")
+        self.close_conn()
+        
         
            
     
 if __name__ == "__main__":
     app = Ctrl(None)
     app.ui.title('STM32LDiscovery UI')
-    app.ui.mainloop(0)
+    app.ui.mainloop()
         
