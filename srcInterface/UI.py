@@ -113,17 +113,17 @@ class Ctrl:
         while 1:
             data = self.conn.recv(4)
             if not data: break
-            if data == 0:
+            if ord(data[0]) == 0:
                 self.ui.canvas.itemconfigure(self.ui.ledGauche, image=self.ui.ledBlanche)
                 self.ui.canvas.itemconfigure(self.ui.ledDroite, image=self.ui.ledBlanche)
                 self.ui.printlog("Log : Led off") 
-            if data == 192:
+            if ord(data[0]) == 192:
                 self.ui.canvas.itemconfigure(self.ui.ledGauche, image=self.ui.ledBleue)
                 self.ui.canvas.itemconfigure(self.ui.ledDroite, image=self.ui.ledVerte)
                 self.ui.printlog("Log : Led on")
             else:
                 self.ui.printlog("Log : Data non reconnue")
-            print(data)
+            print( ord(data[0]))
             self.ui.update()
     
     def clicked(self):
