@@ -46,6 +46,7 @@ class UI(Tkinter.Tk):
         self.entryPort.grid(column=0,row=3,sticky='EW')
         
         button = Tkinter.Button(self,text="Lancer",command=self.OnButtonConnexionClick)
+        
         button.grid(column=0,row=4)
         
         self.labelVariableCo = Tkinter.StringVar()
@@ -78,11 +79,7 @@ class UI(Tkinter.Tk):
         #self.geometry(self.geometry())
         
     def OnButtonConnexionClick(self):
-        if not hasattr(app,'thread'):
-            self.labelVariableCo.set("Initialisation...")
-            app.thread=threading.Thread(target=app.clicked)
-            app.thread.setDaemon(True)
-            app.thread.start()
+        app.event.set()
     
     def quitter(self):
         if hasattr(app,'thread') :
@@ -105,6 +102,11 @@ class UI(Tkinter.Tk):
 class Ctrl:
     def __init__(self,parent):
         self.ui = UI(parent)
+        self.on = False
+        self.event = threading.Event()
+        self.thread=threading.Thread(target=self.fct_thread)
+        self.thread.setDaemon(True)
+        self.thread.start()
         
     def close_conn(self):
         if hasattr(self,'conn') :
@@ -145,7 +147,12 @@ class Ctrl:
         self.ui.canvas.itemconfigure(self.ui.ledGauche, image=self.ui.ledBleue)
         self.ui.canvas.itemconfigure(self.ui.ledDroite, image=self.ui.ledVerte)
         
-        
+    def fct_thread(self):
+        while 1:
+            while not self.event.isSet():
+                self.event.wait()
+            self.clicked()
+            self.event.clear()
            
     
 if __name__ == "__main__":
