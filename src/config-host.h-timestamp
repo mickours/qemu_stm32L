@@ -9,9 +9,6 @@
 #define CONFIG_QEMU_DOCDIR "/usr/local/share/doc/qemu"
 #define CONFIG_QEMU_CONFDIR "/usr/local/etc/qemu"
 #define HOST_X86_64 1
-#define CONFIG_DEBUG_TCG 1
-#define CONFIG_DEBUG_MONITOR 1
-#define CONFIG_DEBUG_EXEC 1
 #define HOST_LONG_BITS 64
 #define CONFIG_POSIX 1
 #define CONFIG_LINUX 1
@@ -57,6 +54,7 @@
 #define CONFIG_INOTIFY1 1
 #define CONFIG_BYTESWAP_H 1
 #define CONFIG_CURL 1
+#define CONFIG_BRLAPI 1
 #define CONFIG_BLUEZ 1
 #define CONFIG_ATTR 1
 #define CONFIG_VIRTFS 1

@@ -48,8 +48,8 @@ ui/vnc-palette.o: ui/vnc-palette.c ui/vnc-palette.h qlist.h qobject.h \
  /usr/include/glib-2.0/glib/gurifuncs.h \
  /usr/include/glib-2.0/glib/gvarianttype.h \
  /usr/include/glib-2.0/glib/gvariant.h qemu-os-posix.h osdep.h bswap.h \
- /home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h config-host.h \
- module.h qemu-queue.h
+ /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h \
+ config-host.h module.h qemu-queue.h
 
 ui/vnc-palette.h:
 
@@ -203,7 +203,7 @@ osdep.h:
 
 bswap.h:
 
-/home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h:
+/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h:
 
 config-host.h:
 

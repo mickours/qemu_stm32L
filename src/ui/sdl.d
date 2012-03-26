@@ -60,11 +60,11 @@ ui/sdl.o: ui/sdl.c /usr/include/SDL/SDL.h /usr/include/SDL/SDL_main.h \
  /usr/include/glib-2.0/glib/gurifuncs.h \
  /usr/include/glib-2.0/glib/gvarianttype.h \
  /usr/include/glib-2.0/glib/gvariant.h qemu-os-posix.h osdep.h bswap.h \
- /home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h config-host.h \
- module.h console.h qemu-char.h qemu-common.h qemu-queue.h qemu-barrier.h \
- qemu-option.h qdict.h qobject.h qlist.h qemu-config.h qstring.h \
- main-loop.h notify.h qerror.h qemu-error.h error.h monitor.h block.h \
- qemu-aio.h qemu-coroutine.h sysemu.h qemu-timer.h qapi-types.h \
+ /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h \
+ config-host.h module.h console.h qemu-char.h qemu-common.h qemu-queue.h \
+ qemu-barrier.h qemu-option.h qdict.h qobject.h qlist.h qemu-config.h \
+ qstring.h main-loop.h notify.h qerror.h qemu-error.h error.h monitor.h \
+ block.h qemu-aio.h qemu-coroutine.h sysemu.h qemu-timer.h qapi-types.h \
  qapi/qapi-types-core.h error.h monitor.h ui/x_keymap.h ui/sdl_zoom.h \
  ui/sdl_keysym.h ui/keymaps.h
 
@@ -264,7 +264,7 @@ osdep.h:
 
 bswap.h:
 
-/home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h:
+/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h:
 
 config-host.h:
 

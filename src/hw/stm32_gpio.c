@@ -2,7 +2,7 @@
 
 typedef struct {
     SysBusDevice busdev;
- 
+
     /* Registres GPIO (Reference Manual p119 */
     uint32_t mode; /* Mode */
     uint32_t otype; /* Output type */
@@ -19,7 +19,7 @@ typedef struct {
     qemu_irq irq;
     qemu_irq out[8];
     unsigned char id;
-    
+
     CharDriverState *chr; /* Char device */
 } stm32_gpio_state;
 
@@ -67,7 +67,7 @@ static void stm32_gpio_update(stm32_gpio_state *s) {
     if (s->chr) {
         uint8_t buffer;
         buffer = (uint8_t)s->outd & 0x000000FF;
-        printf("Changement GPIO %d\n", buffer);
+        //printf("Changement GPIO %d\n", buffer);
         qemu_chr_fe_write(s->chr, &buffer, 1);
     }
 }
@@ -180,7 +180,7 @@ static int stm32_gpio_init(SysBusDevice *dev, const unsigned char id) {
     sysbus_init_irq(dev, &s->irq);
     qdev_init_gpio_in(&dev->qdev, stm32_gpio_set_irq, 8);
     qdev_init_gpio_out(&dev->qdev, s->out, 8);
-    
+
     //s->chr = qdev_init_chardev(&dev->qdev);
     s->chr = qemu_chr_find("B");
     if (s->chr) {
@@ -190,9 +190,9 @@ static int stm32_gpio_init(SysBusDevice *dev, const unsigned char id) {
         exit(0);
     }
     stm32_gpio_reset(s);
-    
+
     vmstate_register(&dev->qdev, -1, &vmstate_stm32_gpio, s);
-    
+
     return 0;
 }
 

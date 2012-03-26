@@ -8,4 +8,4 @@ rm *.o
 #Execution dans Qemu
 #./src/arm-softmmu/qemu-system-arm -M stm32l152rbt6 -nographic -kernel ./main.bin -S -gdb tcp::51234
 #./src/arm-softmmu/qemu-system-arm -M stm32l152rbt6 -nographic -chardev socket,id=stm32_gpio,port=4242,host=localhost -kernel ./main.bin
-./src/arm-softmmu/qemu-system-arm -M stm32l152rbt6 -nographic -chardev socket,id=B,port=4242,host=localhost,nodelay -kernel ../main.bin
+./src/arm-softmmu/qemu-system-arm -M stm32l152rbt6 -nographic -chardev socket,id=B,port=4242,host=localhost,nodelay -kernel ./main.bin

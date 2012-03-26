@@ -24,9 +24,9 @@ vcard_emul_nss.o: vcard_emul_nss.c /usr/include/nss/nss.h \
  /usr/include/nss/key.h /usr/include/nss/keyhi.h \
  /usr/include/nss/secmod.h /usr/include/nspr/prinrval.h \
  /usr/include/nspr/prthread.h /usr/include/nss/secerr.h \
- /home/tim/qemu/Qemu_2012/qemu_stm32L/src/qemu-common.h \
- /home/tim/qemu/Qemu_2012/qemu_stm32L/src/compiler.h \
- /home/tim/qemu/Qemu_2012/qemu_stm32L/src/config-host.h \
+ /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/qemu-common.h \
+ /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/compiler.h \
+ /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/config-host.h \
  /usr/include/glib-2.0/glib.h /usr/include/glib-2.0/glib/galloca.h \
  /usr/include/glib-2.0/glib/gtypes.h \
  /usr/lib/glib-2.0/include/glibconfig.h \
@@ -75,14 +75,14 @@ vcard_emul_nss.o: vcard_emul_nss.c /usr/include/nss/nss.h \
  /usr/include/glib-2.0/glib/gurifuncs.h \
  /usr/include/glib-2.0/glib/gvarianttype.h \
  /usr/include/glib-2.0/glib/gvariant.h \
- /home/tim/qemu/Qemu_2012/qemu_stm32L/src/qemu-os-posix.h \
- /home/tim/qemu/Qemu_2012/qemu_stm32L/src/osdep.h \
- /home/tim/qemu/Qemu_2012/qemu_stm32L/src/bswap.h \
- /home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h \
- /home/tim/qemu/Qemu_2012/qemu_stm32L/src/config-host.h \
- /home/tim/qemu/Qemu_2012/qemu_stm32L/src/module.h vcard.h vcardt.h \
- card_7816t.h vcard_emul.h vcard_emul_type.h vreadert.h vreader.h \
- eventt.h vevent.h
+ /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/qemu-os-posix.h \
+ /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/osdep.h \
+ /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/bswap.h \
+ /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h \
+ /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/config-host.h \
+ /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/module.h vcard.h \
+ vcardt.h card_7816t.h vcard_emul.h vcard_emul_type.h vreadert.h \
+ vreader.h eventt.h vevent.h
 
 /usr/include/nss/nss.h:
 
@@ -186,11 +186,11 @@ vcard_emul_nss.o: vcard_emul_nss.c /usr/include/nss/nss.h \
 
 /usr/include/nss/secerr.h:
 
-/home/tim/qemu/Qemu_2012/qemu_stm32L/src/qemu-common.h:
+/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/qemu-common.h:
 
-/home/tim/qemu/Qemu_2012/qemu_stm32L/src/compiler.h:
+/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/compiler.h:
 
-/home/tim/qemu/Qemu_2012/qemu_stm32L/src/config-host.h:
+/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/config-host.h:
 
 /usr/include/glib-2.0/glib.h:
 
@@ -322,17 +322,17 @@ vcard_emul_nss.o: vcard_emul_nss.c /usr/include/nss/nss.h \
 
 /usr/include/glib-2.0/glib/gvariant.h:
 
-/home/tim/qemu/Qemu_2012/qemu_stm32L/src/qemu-os-posix.h:
+/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/qemu-os-posix.h:
 
-/home/tim/qemu/Qemu_2012/qemu_stm32L/src/osdep.h:
+/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/osdep.h:
 
-/home/tim/qemu/Qemu_2012/qemu_stm32L/src/bswap.h:
+/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/bswap.h:
 
-/home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h:
+/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h:
 
-/home/tim/qemu/Qemu_2012/qemu_stm32L/src/config-host.h:
+/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/config-host.h:
 
-/home/tim/qemu/Qemu_2012/qemu_stm32L/src/module.h:
+/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/module.h:
 
 vcard.h:
 

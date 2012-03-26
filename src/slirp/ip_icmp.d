@@ -49,10 +49,11 @@ slirp/ip_icmp.o: slirp/ip_icmp.c slirp/slirp.h config-host.h \
  /usr/include/glib-2.0/glib/gurifuncs.h \
  /usr/include/glib-2.0/glib/gvarianttype.h \
  /usr/include/glib-2.0/glib/gvariant.h qemu-os-posix.h osdep.h bswap.h \
- /home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h module.h \
- slirp/ip.h slirp/tcp.h slirp/tcp_var.h slirp/tcpip.h slirp/tcp_timer.h \
- slirp/udp.h slirp/ip_icmp.h slirp/mbuf.h slirp/sbuf.h slirp/socket.h \
- slirp/if.h slirp/main.h slirp/misc.h slirp/bootp.h slirp/tftp.h
+ /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h \
+ module.h slirp/ip.h slirp/tcp.h slirp/tcp_var.h slirp/tcpip.h \
+ slirp/tcp_timer.h slirp/udp.h slirp/ip_icmp.h slirp/mbuf.h slirp/sbuf.h \
+ slirp/socket.h slirp/if.h slirp/main.h slirp/misc.h slirp/bootp.h \
+ slirp/tftp.h
 
 slirp/slirp.h:
 
@@ -210,7 +211,7 @@ osdep.h:
 
 bswap.h:
 
-/home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h:
+/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h:
 
 module.h:
 

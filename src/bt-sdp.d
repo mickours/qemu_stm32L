@@ -1,4 +1,4 @@
-bt-sdp.o: /home/tim/qemu/Qemu_2012/qemu_stm32L/src/hw/bt-sdp.c \
+bt-sdp.o: /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/hw/bt-sdp.c \
  qemu-common.h compiler.h config-host.h /usr/include/glib-2.0/glib.h \
  /usr/include/glib-2.0/glib/galloca.h /usr/include/glib-2.0/glib/gtypes.h \
  /usr/lib/glib-2.0/include/glibconfig.h \
@@ -47,8 +47,9 @@ bt-sdp.o: /home/tim/qemu/Qemu_2012/qemu_stm32L/src/hw/bt-sdp.c \
  /usr/include/glib-2.0/glib/gurifuncs.h \
  /usr/include/glib-2.0/glib/gvarianttype.h \
  /usr/include/glib-2.0/glib/gvariant.h qemu-os-posix.h osdep.h bswap.h \
- /home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h config-host.h \
- module.h /home/tim/qemu/Qemu_2012/qemu_stm32L/src/hw/bt.h
+ /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h \
+ config-host.h module.h \
+ /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/hw/bt.h
 
 qemu-common.h:
 
@@ -192,10 +193,10 @@ osdep.h:
 
 bswap.h:
 
-/home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h:
+/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h:
 
 config-host.h:
 
 module.h:
 
-/home/tim/qemu/Qemu_2012/qemu_stm32L/src/hw/bt.h:
+/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/hw/bt.h:

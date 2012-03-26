@@ -47,9 +47,9 @@ qemu-timer.o: qemu-timer.c sysemu.h qemu-common.h compiler.h \
  /usr/include/glib-2.0/glib/gurifuncs.h \
  /usr/include/glib-2.0/glib/gvarianttype.h \
  /usr/include/glib-2.0/glib/gvariant.h qemu-os-posix.h osdep.h bswap.h \
- /home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h config-host.h \
- module.h qemu-option.h qemu-queue.h qemu-barrier.h qdict.h qobject.h \
- qlist.h qemu-timer.h main-loop.h notify.h qapi-types.h \
+ /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h \
+ config-host.h module.h qemu-option.h qemu-queue.h qemu-barrier.h qdict.h \
+ qobject.h qlist.h qemu-timer.h main-loop.h notify.h qapi-types.h \
  qapi/qapi-types-core.h qemu-common.h error.h compiler.h monitor.h \
  qemu-common.h qemu-char.h qemu-queue.h qemu-option.h qemu-config.h \
  qobject.h qstring.h main-loop.h qerror.h qdict.h qemu-error.h error.h \
@@ -201,7 +201,7 @@ osdep.h:
 
 bswap.h:
 
-/home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h:
+/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h:
 
 config-host.h:
 

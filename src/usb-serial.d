@@ -1,4 +1,5 @@
-usb-serial.o: /home/tim/qemu/Qemu_2012/qemu_stm32L/src/hw/usb-serial.c \
+usb-serial.o: \
+ /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/hw/usb-serial.c \
  qemu-common.h compiler.h config-host.h /usr/include/glib-2.0/glib.h \
  /usr/include/glib-2.0/glib/galloca.h /usr/include/glib-2.0/glib/gtypes.h \
  /usr/lib/glib-2.0/include/glibconfig.h \
@@ -47,16 +48,17 @@ usb-serial.o: /home/tim/qemu/Qemu_2012/qemu_stm32L/src/hw/usb-serial.c \
  /usr/include/glib-2.0/glib/gurifuncs.h \
  /usr/include/glib-2.0/glib/gvarianttype.h \
  /usr/include/glib-2.0/glib/gvariant.h qemu-os-posix.h osdep.h bswap.h \
- /home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h config-host.h \
- module.h qemu-error.h /home/tim/qemu/Qemu_2012/qemu_stm32L/src/hw/usb.h \
- block.h qemu-aio.h qemu-common.h qemu-char.h qemu-queue.h qemu-barrier.h \
+ /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h \
+ config-host.h module.h qemu-error.h \
+ /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/hw/usb.h block.h \
+ qemu-aio.h qemu-common.h qemu-char.h qemu-queue.h qemu-barrier.h \
  qemu-option.h qdict.h qobject.h qlist.h qemu-config.h qstring.h \
  main-loop.h qemu-coroutine.h \
- /home/tim/qemu/Qemu_2012/qemu_stm32L/src/hw/qdev.h \
- /home/tim/qemu/Qemu_2012/qemu_stm32L/src/hw/hw.h ioport.h iorange.h \
- /home/tim/qemu/Qemu_2012/qemu_stm32L/src/hw/irq.h qemu-queue.h \
- qemu-char.h qemu-option.h \
- /home/tim/qemu/Qemu_2012/qemu_stm32L/src/hw/usb-desc.h
+ /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/hw/qdev.h \
+ /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/hw/hw.h ioport.h \
+ iorange.h /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/hw/irq.h \
+ qemu-queue.h qemu-char.h qemu-option.h \
+ /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/hw/usb-desc.h
 
 qemu-common.h:
 
@@ -200,7 +202,7 @@ osdep.h:
 
 bswap.h:
 
-/home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h:
+/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h:
 
 config-host.h:
 
@@ -208,7 +210,7 @@ module.h:
 
 qemu-error.h:
 
-/home/tim/qemu/Qemu_2012/qemu_stm32L/src/hw/usb.h:
+/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/hw/usb.h:
 
 block.h:
 
@@ -238,15 +240,15 @@ main-loop.h:
 
 qemu-coroutine.h:
 
-/home/tim/qemu/Qemu_2012/qemu_stm32L/src/hw/qdev.h:
+/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/hw/qdev.h:
 
-/home/tim/qemu/Qemu_2012/qemu_stm32L/src/hw/hw.h:
+/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/hw/hw.h:
 
 ioport.h:
 
 iorange.h:
 
-/home/tim/qemu/Qemu_2012/qemu_stm32L/src/hw/irq.h:
+/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/hw/irq.h:
 
 qemu-queue.h:
 
@@ -254,4 +256,4 @@ qemu-char.h:
 
 qemu-option.h:
 
-/home/tim/qemu/Qemu_2012/qemu_stm32L/src/hw/usb-desc.h:
+/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/hw/usb-desc.h:

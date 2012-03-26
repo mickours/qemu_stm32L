@@ -47,10 +47,10 @@ audio/wavaudio.o: audio/wavaudio.c hw/hw.h qemu-common.h compiler.h \
  /usr/include/glib-2.0/glib/gurifuncs.h \
  /usr/include/glib-2.0/glib/gvarianttype.h \
  /usr/include/glib-2.0/glib/gvariant.h qemu-os-posix.h osdep.h bswap.h \
- /home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h config-host.h \
- module.h ioport.h qemu-common.h iorange.h hw/irq.h qemu-timer.h \
- main-loop.h notify.h qemu-queue.h qemu-barrier.h audio/audio.h \
- qemu-queue.h audio/audio_int.h audio/mixeng.h
+ /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h \
+ config-host.h module.h ioport.h qemu-common.h iorange.h hw/irq.h \
+ qemu-timer.h main-loop.h notify.h qemu-queue.h qemu-barrier.h \
+ audio/audio.h qemu-queue.h audio/audio_int.h audio/mixeng.h
 
 hw/hw.h:
 
@@ -196,7 +196,7 @@ osdep.h:
 
 bswap.h:
 
-/home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h:
+/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h:
 
 config-host.h:
 

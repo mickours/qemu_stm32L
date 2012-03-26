@@ -34,7 +34,7 @@ static inline void switch_leds_off(void)
 #define delay() \
 do { \
 register unsigned int i; \
-for (i = 0; i < 1000000; ++i) \
+for (i = 0; i <1000000; ++i) \
 __asm__ __volatile__ ("nop\n\t":::"memory"); \
 } while (0)
 
@@ -46,9 +46,9 @@ void main(void)
   while (1)
   {
     switch_leds_on();
-    //delay();
+    delay();
     switch_leds_off();
-    //delay();
+    delay();
   }
 }
 

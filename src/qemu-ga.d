@@ -48,10 +48,11 @@ qemu-ga.o: qemu-ga.c /usr/include/glib-2.0/glib.h \
  /usr/include/glib-2.0/glib/gvariant.h qemu_socket.h qemu-option.h \
  qemu-queue.h qemu-barrier.h qdict.h qobject.h qlist.h qemu-common.h \
  compiler.h config-host.h qemu-os-posix.h osdep.h bswap.h \
- /home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h config-host.h \
- module.h json-streamer.h json-lexer.h qstring.h json-parser.h error.h \
- qint.h qjson.h qga/guest-agent-core.h qapi/qmp-core.h qobject.h qdict.h \
- error.h qemu-common.h qerror.h qemu-error.h error_int.h
+ /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h \
+ config-host.h module.h json-streamer.h json-lexer.h qstring.h \
+ json-parser.h error.h qint.h qjson.h qga/guest-agent-core.h \
+ qapi/qmp-core.h qobject.h qdict.h error.h qemu-common.h qerror.h \
+ qemu-error.h error_int.h
 
 /usr/include/glib-2.0/glib.h:
 
@@ -209,7 +210,7 @@ osdep.h:
 
 bswap.h:
 
-/home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h:
+/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h:
 
 config-host.h:
 

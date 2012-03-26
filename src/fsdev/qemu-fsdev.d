@@ -48,9 +48,9 @@ fsdev/qemu-fsdev.o: fsdev/qemu-fsdev.c fsdev/qemu-fsdev.h qemu-option.h \
  /usr/include/glib-2.0/glib/gurifuncs.h \
  /usr/include/glib-2.0/glib/gvarianttype.h \
  /usr/include/glib-2.0/glib/gvariant.h qemu-os-posix.h osdep.h bswap.h \
- /home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h config-host.h \
- module.h fsdev/file-op-9p.h qemu-queue.h osdep.h qemu-common.h \
- qemu-config.h
+ /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h \
+ config-host.h module.h fsdev/file-op-9p.h qemu-queue.h osdep.h \
+ qemu-common.h qemu-config.h
 
 fsdev/qemu-fsdev.h:
 
@@ -208,7 +208,7 @@ osdep.h:
 
 bswap.h:
 
-/home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h:
+/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h:
 
 config-host.h:
 

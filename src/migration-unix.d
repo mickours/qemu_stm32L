@@ -47,11 +47,12 @@ migration-unix.o: migration-unix.c qemu-common.h compiler.h config-host.h \
  /usr/include/glib-2.0/glib/gurifuncs.h \
  /usr/include/glib-2.0/glib/gvarianttype.h \
  /usr/include/glib-2.0/glib/gvariant.h qemu-os-posix.h osdep.h bswap.h \
- /home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h config-host.h \
- module.h qemu_socket.h qemu-option.h qemu-queue.h qemu-barrier.h qdict.h \
- qobject.h qlist.h migration.h notify.h error.h qemu-char.h qemu-config.h \
- qstring.h main-loop.h buffered_file.h hw/hw.h qemu-common.h ioport.h \
- qemu-common.h iorange.h hw/irq.h block.h qemu-aio.h qemu-coroutine.h
+ /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h \
+ config-host.h module.h qemu_socket.h qemu-option.h qemu-queue.h \
+ qemu-barrier.h qdict.h qobject.h qlist.h migration.h notify.h error.h \
+ qemu-char.h qemu-config.h qstring.h main-loop.h buffered_file.h hw/hw.h \
+ qemu-common.h ioport.h qemu-common.h iorange.h hw/irq.h block.h \
+ qemu-aio.h qemu-coroutine.h
 
 qemu-common.h:
 
@@ -195,7 +196,7 @@ osdep.h:
 
 bswap.h:
 
-/home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h:
+/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h:
 
 config-host.h:
 

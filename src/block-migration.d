@@ -47,14 +47,14 @@ block-migration.o: block-migration.c qemu-common.h compiler.h \
  /usr/include/glib-2.0/glib/gurifuncs.h \
  /usr/include/glib-2.0/glib/gvarianttype.h \
  /usr/include/glib-2.0/glib/gvariant.h qemu-os-posix.h osdep.h bswap.h \
- /home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h config-host.h \
- module.h block_int.h block.h qemu-aio.h qemu-char.h qemu-queue.h \
- qemu-barrier.h qemu-option.h qdict.h qobject.h qlist.h qemu-config.h \
- qstring.h main-loop.h qemu-coroutine.h qemu-timer.h notify.h \
- qapi-types.h qapi/qapi-types-core.h qemu-common.h error.h compiler.h \
- monitor.h qemu-common.h qemu-char.h qerror.h qdict.h qstring.h \
- qemu-error.h error.h block.h hw/hw.h ioport.h iorange.h hw/irq.h \
- monitor.h block-migration.h migration.h error.h blockdev.h
+ /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h \
+ config-host.h module.h block_int.h block.h qemu-aio.h qemu-char.h \
+ qemu-queue.h qemu-barrier.h qemu-option.h qdict.h qobject.h qlist.h \
+ qemu-config.h qstring.h main-loop.h qemu-coroutine.h qemu-timer.h \
+ notify.h qapi-types.h qapi/qapi-types-core.h qemu-common.h error.h \
+ compiler.h monitor.h qemu-common.h qemu-char.h qerror.h qdict.h \
+ qstring.h qemu-error.h error.h block.h hw/hw.h ioport.h iorange.h \
+ hw/irq.h monitor.h block-migration.h migration.h error.h blockdev.h
 
 qemu-common.h:
 
@@ -198,7 +198,7 @@ osdep.h:
 
 bswap.h:
 
-/home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h:
+/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h:
 
 config-host.h:
 
