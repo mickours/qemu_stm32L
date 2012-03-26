@@ -98,7 +98,10 @@ class UI(Tkinter.Tk):
     
     def use(self):
         pass
-
+        
+#***************************************#
+#Controlleur							#
+#***************************************#
 class Ctrl:
     def __init__(self,parent):
         self.ui = UI(parent)
@@ -111,33 +114,33 @@ class Ctrl:
         
     def traiterrecv(self):
         while 1:
-            data = self.conn.recv(4)
+            data = self.conn.recv(1)
             if not data: break
-            if ord(data[0]) == 0:
+            if ord(data) == 0:
                 self.ui.canvas.itemconfigure(self.ui.ledGauche, image=self.ui.ledBlanche)
                 self.ui.canvas.itemconfigure(self.ui.ledDroite, image=self.ui.ledBlanche)
                 self.ui.printlog("Log : Led off") 
-            if ord(data[0]) == 192:
+            elif ord(data) == 192:
                 self.ui.canvas.itemconfigure(self.ui.ledGauche, image=self.ui.ledBleue)
                 self.ui.canvas.itemconfigure(self.ui.ledDroite, image=self.ui.ledVerte)
                 self.ui.printlog("Log : Led on")
             else:
                 self.ui.printlog("Log : Data non reconnue")
-            print( ord(data[0]))
             self.ui.update()
     
     def clicked(self):
-        self.serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.serversocket.bind((socket.gethostname(), int(self.ui.entryVariablePort.get())))
-        self.serversocket.listen(1)
-        self.ui.labelVariableCo.set(u"En attente de connexion \nsur le port " + self.ui.entryVariablePort.get())
-        self.ui.update()
-        self.conn, self.addr = self.serversocket.accept()
-        self.ui.labelVariableCo.set("Connecte")
-        self.ui.update()
-        self.traiterrecv()
-        self.close_conn()
-        
+    	if not hasattr(self,'serversocket') :
+		    self.serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		    self.serversocket.bind((socket.gethostname(), int(self.ui.entryVariablePort.get())))
+		    self.serversocket.listen(1)
+		    self.ui.labelVariableCo.set(u"En attente de connexion \nsur le port " + self.ui.entryVariablePort.get())
+		    self.ui.update()
+		    self.conn, self.addr = self.serversocket.accept()
+		    self.ui.labelVariableCo.set("Connecte")
+		    self.ui.update()
+		    self.traiterrecv()
+		    self.close_conn()
+                
     def tester(self):
         self.ui.canvas.itemconfigure(self.ui.ledGauche, image=self.ui.ledBleue)
         self.ui.canvas.itemconfigure(self.ui.ledDroite, image=self.ui.ledVerte)
