@@ -53,6 +53,11 @@ class UI(Tkinter.Tk):
         self.labelConnexion = Tkinter.Label(self,textvariable=self.labelVariableCo)
         self.labelConnexion.grid(column=0,row=5,sticky='EW')
         
+        self.labelVariableLog = Tkinter.StringVar()
+        self.labelVariableLog.set("Log : ")
+        self.labelLog = Tkinter.Label(self,textvariable=self.labelVariableLog)
+        self.labelLog.grid(column=0,row=6,sticky='EW')
+        
         self.carte=PhotoImage(file="carte.gif")
         self.ledBlanche=PhotoImage(file="LEDblanche.gif")
         self.ledBleue=PhotoImage(file="LEDbleue.gif")
@@ -84,8 +89,8 @@ class UI(Tkinter.Tk):
             app.close_conn()
         self.quit()
             
-    def printerror(self):
-        self.labelVariableCo.set("Error : Data non reconnue")
+    def printlog(self, m):
+        self.labelVariableLog.set(m)
         self.update()
         
     def apropos(self):
@@ -93,9 +98,6 @@ class UI(Tkinter.Tk):
     
     def use(self):
         pass
-    
-    def quit(self):
-        self.quitter()
 
 class Ctrl:
     def __init__(self,parent):
@@ -111,15 +113,17 @@ class Ctrl:
         while 1:
             data = self.conn.recv(4)
             if not data: break
-            
             if data == 0:
                 self.ui.canvas.itemconfigure(self.ui.ledGauche, image=self.ui.ledBlanche)
-                self.ui.canvas.itemconfigure(self.ui.ledDroite, image=self.ui.ledBlanche) 
+                self.ui.canvas.itemconfigure(self.ui.ledDroite, image=self.ui.ledBlanche)
+                self.ui.printlog("Log : Led off") 
             if data == 192:
                 self.ui.canvas.itemconfigure(self.ui.ledGauche, image=self.ui.ledBleue)
                 self.ui.canvas.itemconfigure(self.ui.ledDroite, image=self.ui.ledVerte)
+                self.ui.printlog("Log : Led on")
             else:
-                self.ui.printerror()
+                self.ui.printlog("Log : Data non reconnue")
+            print(data)
             self.ui.update()
     
     def clicked(self):
