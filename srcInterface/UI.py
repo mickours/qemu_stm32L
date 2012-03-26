@@ -85,13 +85,17 @@ class UI(Tkinter.Tk):
         self.quit()
             
     def printerror(self):
-        pass
+        self.labelVariableCo.set("Error : Data non reconnue")
+        self.update()
         
     def apropos(self):
         pass
     
     def use(self):
         pass
+    
+    def quit(self):
+        self.quitter()
 
 class Ctrl:
     def __init__(self,parent):
@@ -112,8 +116,8 @@ class Ctrl:
                 self.ui.canvas.itemconfigure(self.ui.ledGauche, image=self.ui.ledBlanche)
                 self.ui.canvas.itemconfigure(self.ui.ledDroite, image=self.ui.ledBlanche) 
             if data == 192:
-                self.ui.canvas.itemconfigure(self.ledGauche, image=self.ledBleue)
-                self.ui.canvas.itemconfigure(self.ledDroite, image=self.ledVerte)
+                self.ui.canvas.itemconfigure(self.ui.ledGauche, image=self.ui.ledBleue)
+                self.ui.canvas.itemconfigure(self.ui.ledDroite, image=self.ui.ledVerte)
             else:
                 self.ui.printerror()
             self.ui.update()
@@ -129,6 +133,10 @@ class Ctrl:
         self.ui.update()
         self.traiterrecv()
         self.close_conn()
+        
+    def tester(self):
+        self.ui.canvas.itemconfigure(self.ui.ledGauche, image=self.ui.ledBleue)
+        self.ui.canvas.itemconfigure(self.ui.ledDroite, image=self.ui.ledVerte)
         
         
            
