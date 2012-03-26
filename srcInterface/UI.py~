@@ -116,7 +116,6 @@ class Ctrl:
                 self.ui.canvas.itemconfigure(self.ledDroite, image=self.ledVerte)
             else:
                 self.ui.printerror()
-            self.ui.update()
     
     def clicked(self):
         self.serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
