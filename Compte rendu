@@ -1,0 +1,26 @@
+== Présentation de la carte STM32 ==
+=== Introduction ===
+=== Structure ===
+=== Execution d'un programme ===
+==== Compilation ====
+			- ARM + Chaine de compilation
+			- Structure du programme (Starter + app)
+==== Chargement sur la carte ====
+
+
+
+== Présentation de Qemu ==
+=== Introduction ===
+=== Installation ===
+=== Mémoire ===
+=== Composants ===
+=== Qemu et GDB ===
+=== CharDev ===
+
+
+
+== Emulation de la carte STM32 ==
+=== Composants émulés ===
+==== Processeur + Mémoire ====
+==== GPIO ====
+		
