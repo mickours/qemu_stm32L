@@ -131,7 +131,6 @@ class Ctrl:
             self.ui.update()
     
     def clicked(self):
-    	if not hasattr(self,'serversocket') :
 		    self.serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		    self.serversocket.bind((socket.gethostname(), int(self.ui.entryVariablePort.get())))
 		    self.serversocket.listen(1)
