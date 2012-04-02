@@ -143,7 +143,7 @@ static void stm32l152rbt6_init(ram_addr_t ram_size,
         0x40021400  //GPIO_H
     };
 
-    static const int gpio_irq[NB_GPIO] = {0,1,2,3,4,5};
+    static const int gpio_irq[NB_GPIO] = {6,7,8,9,10,23,40};
 
 
     qemu_irq *pic;
@@ -166,10 +166,12 @@ static void stm32l152rbt6_init(ram_addr_t ram_size,
     
     
     //Initialisation du GPIO_B
-    gpio_dev[1] = sysbus_create_simple("stm32_gpio_B", gpio_addr[1], NULL);
+    gpio_dev[1] = sysbus_create_varargs("stm32_gpio_B", gpio_addr[1], pic[6], pic[7], pic[8], pic[9], pic[10], NULL);
+    
     for(j=0; j<8; j++) {
         qdev_connect_gpio_out(gpio_dev[1], j, gpio_out[1][j]);
     }
+    
 
     /*
      for (i = 0; i < NB_GPIO; i++) {

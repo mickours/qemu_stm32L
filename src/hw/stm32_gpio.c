@@ -1,5 +1,7 @@
 #include "sysbus.h"
 
+#define NB_IRQ_IN 4
+
 typedef struct {
     SysBusDevice busdev;
 
@@ -16,7 +18,7 @@ typedef struct {
     uint32_t afrl; /* Alternate function low */
     uint32_t afrh; /* Alternate function high */
 
-    qemu_irq irq;
+    qemu_irq in[];
     qemu_irq out[8];
     unsigned char id;
 
@@ -123,7 +125,8 @@ static void stm32_gpio_reset(stm32_gpio_state *s) {
 
 static void stm32_gpio_set_irq(void * opaque, int irq, int level) {
     printf("Set irq[%d]->%d\n", irq, level);
-    //stm32_gpio_state *s = (stm32_gpio_state *) opaque;
+    stm32_gpio_state *s = (stm32_gpio_state *) opaque;
+    qemu_set_irq(s->out[irq], level);
     //Une pin à changer d'état (quand configurée en entrée
     //irq: num pin (1->8)
     //level: nouvel état
@@ -165,8 +168,9 @@ static void stm32_receive(void *opaque, const uint8_t* buf, int size)
             uint8_t mask = 1;
             mask = mask << numBit;
             if((var & mask) != 0) {
-                printf("Rcv\n");
-                stm32_gpio_set_irq(opaque, numBit, (var & mask)!=0);
+                stm32_gpio_state *s = (stm32_gpio_state *)opaque;
+                qemu_set_irq(s->out[i], (var & mask)!=0);
+                //stm32_gpio_set_irq(opaque, numBit, (var & mask)!=0);
             }
         }
     }
@@ -188,7 +192,9 @@ static int stm32_gpio_init(SysBusDevice *dev, const unsigned char id) {
             stm32_gpio_writefn, s,
             DEVICE_NATIVE_ENDIAN);
     sysbus_init_mmio(dev, 0x1000, iomemtype);
-    sysbus_init_irq(dev, &s->irq);
+    int i;
+    for (i=0;i<)
+    sysbus_init_irq(dev, &s->in[i]);
     qdev_init_gpio_in(&dev->qdev, stm32_gpio_set_irq, 8);
     qdev_init_gpio_out(&dev->qdev, s->out, 8);
 

@@ -61,12 +61,13 @@ Fait :
 				Generation d'une req d'IT
 				pending bit initialisé
 		
-	
-
+02/04/2012
+	* Creer un module led avec affichage avec chardev
+	* Creer un module bouton avec commande par chardev
+	* Connecter les leds et les boutons au GPIO B
 	
 TODO :
 	* Faire un programme de Démo jolie pour Donzet
 	* Compléter le Wiki
-	* Finir le dossier de GL
 	* Faire les tests des gpios
 
