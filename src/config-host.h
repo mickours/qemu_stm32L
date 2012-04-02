@@ -54,7 +54,6 @@
 #define CONFIG_INOTIFY1 1
 #define CONFIG_BYTESWAP_H 1
 #define CONFIG_CURL 1
-#define CONFIG_BRLAPI 1
 #define CONFIG_BLUEZ 1
 #define CONFIG_ATTR 1
 #define CONFIG_VIRTFS 1

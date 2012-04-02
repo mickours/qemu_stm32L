@@ -122,6 +122,7 @@ static void stm32_gpio_reset(stm32_gpio_state *s) {
 }
 
 static void stm32_gpio_set_irq(void * opaque, int irq, int level) {
+    printf("Set irq[%d]->%d\n", irq, level);
     //stm32_gpio_state *s = (stm32_gpio_state *) opaque;
     //Une pin à changer d'état (quand configurée en entrée
     //irq: num pin (1->8)
@@ -154,11 +155,21 @@ static int stm32_can_receive(void *opaque)
 */
 }
 
-static void stm32_receive(void *opaque, const uint8_t *buf, int size)
+static void stm32_receive(void *opaque, const uint8_t* buf, int size)
 {
-/*
-    pl011_put_fifo(opaque, *buf);
-*/
+    int i;
+    for(i=0; i<size; i++) {
+        uint8_t var = buf[i];
+        int numBit;
+        for(numBit=0; numBit<8; numBit++) {
+            uint8_t mask = 1;
+            mask = mask << numBit;
+            if((var & mask) != 0) {
+                printf("Rcv\n");
+                stm32_gpio_set_irq(opaque, numBit, (var & mask)!=0);
+            }
+        }
+    }
 }
 
 static void stm32_event(void *opaque, int event)
@@ -185,9 +196,6 @@ static int stm32_gpio_init(SysBusDevice *dev, const unsigned char id) {
     s->chr = qemu_chr_find("B");
     if (s->chr) {
         qemu_chr_add_handlers(s->chr, stm32_can_receive, stm32_receive, stm32_event, s);
-    } else {
-        printf("Device not found");
-        exit(0);
     }
     stm32_gpio_reset(s);
 

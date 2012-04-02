@@ -49,12 +49,12 @@ qapi/qapi-dealloc-visitor.o: qapi/qapi-dealloc-visitor.c \
  /usr/include/glib-2.0/glib/gurifuncs.h \
  /usr/include/glib-2.0/glib/gvarianttype.h \
  /usr/include/glib-2.0/glib/gvariant.h qemu-os-posix.h osdep.h bswap.h \
- /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h \
- config-host.h module.h error.h monitor.h qemu-common.h qemu-char.h \
- qemu-queue.h qemu-barrier.h qemu-option.h qdict.h qobject.h qlist.h \
- qemu-config.h qstring.h main-loop.h qerror.h qemu-error.h error.h \
- block.h qemu-aio.h qemu-coroutine.h qemu-queue.h qemu-objects.h qint.h \
- qfloat.h qbool.h qjson.h
+ /home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h config-host.h \
+ module.h error.h monitor.h qemu-common.h qemu-char.h qemu-queue.h \
+ qemu-barrier.h qemu-option.h qdict.h qobject.h qlist.h qemu-config.h \
+ qstring.h main-loop.h qerror.h qemu-error.h error.h block.h qemu-aio.h \
+ qemu-coroutine.h qemu-queue.h qemu-objects.h qint.h qfloat.h qbool.h \
+ qjson.h
 
 qapi/qapi-dealloc-visitor.h:
 
@@ -204,7 +204,7 @@ osdep.h:
 
 bswap.h:
 
-/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h:
+/home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h:
 
 config-host.h:
 
