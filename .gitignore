@@ -1,4 +1,6 @@
-.o
-~
-.bin
-.elf
+*.o
+*~
+*.bin
+*.elf
+*.d
+*.log
