@@ -47,10 +47,9 @@ net/dump.o: net/dump.c net/dump.h net.h qemu-queue.h qemu-barrier.h \
  /usr/include/glib-2.0/glib/gurifuncs.h \
  /usr/include/glib-2.0/glib/gvarianttype.h \
  /usr/include/glib-2.0/glib/gvariant.h qemu-os-posix.h osdep.h bswap.h \
- /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h \
- config-host.h module.h qdict.h qobject.h qlist.h qemu-option.h \
- net/queue.h qemu-common.h qemu-error.h qemu-log.h qemu-timer.h \
- main-loop.h notify.h
+ /home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h config-host.h \
+ module.h qdict.h qobject.h qlist.h qemu-option.h net/queue.h \
+ qemu-common.h qemu-error.h qemu-log.h qemu-timer.h main-loop.h notify.h
 
 net/dump.h:
 
@@ -202,7 +201,7 @@ osdep.h:
 
 bswap.h:
 
-/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h:
+/home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h:
 
 config-host.h:
 

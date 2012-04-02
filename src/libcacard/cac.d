@@ -1,7 +1,6 @@
-cac.o: cac.c \
- /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/qemu-common.h \
- /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/compiler.h \
- /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/config-host.h \
+cac.o: cac.c /home/tim/qemu/Qemu_2012/qemu_stm32L/src/qemu-common.h \
+ /home/tim/qemu/Qemu_2012/qemu_stm32L/src/compiler.h \
+ /home/tim/qemu/Qemu_2012/qemu_stm32L/src/config-host.h \
  /usr/include/glib-2.0/glib.h /usr/include/glib-2.0/glib/galloca.h \
  /usr/include/glib-2.0/glib/gtypes.h \
  /usr/lib/glib-2.0/include/glibconfig.h \
@@ -50,20 +49,20 @@ cac.o: cac.c \
  /usr/include/glib-2.0/glib/gurifuncs.h \
  /usr/include/glib-2.0/glib/gvarianttype.h \
  /usr/include/glib-2.0/glib/gvariant.h \
- /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/qemu-os-posix.h \
- /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/osdep.h \
- /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/bswap.h \
- /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h \
- /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/config-host.h \
- /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/module.h cac.h \
- vcard.h vcardt.h vreader.h eventt.h vreadert.h vcard_emul.h card_7816t.h \
+ /home/tim/qemu/Qemu_2012/qemu_stm32L/src/qemu-os-posix.h \
+ /home/tim/qemu/Qemu_2012/qemu_stm32L/src/osdep.h \
+ /home/tim/qemu/Qemu_2012/qemu_stm32L/src/bswap.h \
+ /home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h \
+ /home/tim/qemu/Qemu_2012/qemu_stm32L/src/config-host.h \
+ /home/tim/qemu/Qemu_2012/qemu_stm32L/src/module.h cac.h vcard.h vcardt.h \
+ vreader.h eventt.h vreadert.h vcard_emul.h card_7816t.h \
  vcard_emul_type.h card_7816.h
 
-/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/qemu-common.h:
+/home/tim/qemu/Qemu_2012/qemu_stm32L/src/qemu-common.h:
 
-/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/compiler.h:
+/home/tim/qemu/Qemu_2012/qemu_stm32L/src/compiler.h:
 
-/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/config-host.h:
+/home/tim/qemu/Qemu_2012/qemu_stm32L/src/config-host.h:
 
 /usr/include/glib-2.0/glib.h:
 
@@ -195,17 +194,17 @@ cac.o: cac.c \
 
 /usr/include/glib-2.0/glib/gvariant.h:
 
-/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/qemu-os-posix.h:
+/home/tim/qemu/Qemu_2012/qemu_stm32L/src/qemu-os-posix.h:
 
-/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/osdep.h:
+/home/tim/qemu/Qemu_2012/qemu_stm32L/src/osdep.h:
 
-/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/bswap.h:
+/home/tim/qemu/Qemu_2012/qemu_stm32L/src/bswap.h:
 
-/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h:
+/home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h:
 
-/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/config-host.h:
+/home/tim/qemu/Qemu_2012/qemu_stm32L/src/config-host.h:
 
-/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/module.h:
+/home/tim/qemu/Qemu_2012/qemu_stm32L/src/module.h:
 
 cac.h:
 

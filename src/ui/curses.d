@@ -47,11 +47,11 @@ ui/curses.o: ui/curses.c qemu-common.h compiler.h config-host.h \
  /usr/include/glib-2.0/glib/gurifuncs.h \
  /usr/include/glib-2.0/glib/gvarianttype.h \
  /usr/include/glib-2.0/glib/gvariant.h qemu-os-posix.h osdep.h bswap.h \
- /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h \
- config-host.h module.h console.h qemu-char.h qemu-common.h qemu-queue.h \
- qemu-barrier.h qemu-option.h qdict.h qobject.h qlist.h qemu-config.h \
- qstring.h main-loop.h notify.h qerror.h qemu-error.h error.h monitor.h \
- block.h qemu-aio.h qemu-coroutine.h sysemu.h qemu-timer.h qapi-types.h \
+ /home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h config-host.h \
+ module.h console.h qemu-char.h qemu-common.h qemu-queue.h qemu-barrier.h \
+ qemu-option.h qdict.h qobject.h qlist.h qemu-config.h qstring.h \
+ main-loop.h notify.h qerror.h qemu-error.h error.h monitor.h block.h \
+ qemu-aio.h qemu-coroutine.h sysemu.h qemu-timer.h qapi-types.h \
  qapi/qapi-types-core.h error.h monitor.h ui/curses_keys.h ui/keymaps.h
 
 qemu-common.h:
@@ -196,7 +196,7 @@ osdep.h:
 
 bswap.h:
 
-/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h:
+/home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h:
 
 config-host.h:
 

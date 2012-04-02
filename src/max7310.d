@@ -1,8 +1,7 @@
-max7310.o: \
- /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/hw/max7310.c \
- /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/hw/i2c.h \
- /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/hw/qdev.h \
- /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/hw/hw.h qemu-common.h \
+max7310.o: /home/tim/qemu/Qemu_2012/qemu_stm32L/src/hw/max7310.c \
+ /home/tim/qemu/Qemu_2012/qemu_stm32L/src/hw/i2c.h \
+ /home/tim/qemu/Qemu_2012/qemu_stm32L/src/hw/qdev.h \
+ /home/tim/qemu/Qemu_2012/qemu_stm32L/src/hw/hw.h qemu-common.h \
  compiler.h config-host.h /usr/include/glib-2.0/glib.h \
  /usr/include/glib-2.0/glib/galloca.h /usr/include/glib-2.0/glib/gtypes.h \
  /usr/lib/glib-2.0/include/glibconfig.h \
@@ -51,17 +50,17 @@ max7310.o: \
  /usr/include/glib-2.0/glib/gurifuncs.h \
  /usr/include/glib-2.0/glib/gvarianttype.h \
  /usr/include/glib-2.0/glib/gvariant.h qemu-os-posix.h osdep.h bswap.h \
- /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h \
- config-host.h module.h ioport.h qemu-common.h iorange.h \
- /home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/hw/irq.h qemu-queue.h \
+ /home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h config-host.h \
+ module.h ioport.h qemu-common.h iorange.h \
+ /home/tim/qemu/Qemu_2012/qemu_stm32L/src/hw/irq.h qemu-queue.h \
  qemu-barrier.h qemu-char.h qemu-queue.h qemu-option.h qdict.h qobject.h \
  qlist.h qemu-config.h qstring.h main-loop.h qemu-option.h
 
-/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/hw/i2c.h:
+/home/tim/qemu/Qemu_2012/qemu_stm32L/src/hw/i2c.h:
 
-/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/hw/qdev.h:
+/home/tim/qemu/Qemu_2012/qemu_stm32L/src/hw/qdev.h:
 
-/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/hw/hw.h:
+/home/tim/qemu/Qemu_2012/qemu_stm32L/src/hw/hw.h:
 
 qemu-common.h:
 
@@ -205,7 +204,7 @@ osdep.h:
 
 bswap.h:
 
-/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/fpu/softfloat.h:
+/home/tim/qemu/Qemu_2012/qemu_stm32L/src/fpu/softfloat.h:
 
 config-host.h:
 
@@ -217,7 +216,7 @@ qemu-common.h:
 
 iorange.h:
 
-/home/mickours/POLYTHEC_RICM4/Qemu/qemu_stm32L/src/hw/irq.h:
+/home/tim/qemu/Qemu_2012/qemu_stm32L/src/hw/irq.h:
 
 qemu-queue.h:
 
