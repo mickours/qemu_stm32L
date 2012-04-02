@@ -29,7 +29,6 @@ class UI(Tkinter.Tk):
         self.fichier.add_command(label="  Quitter", command=self.quitter)
         self.fichier = Tkinter.Menu(tearoff=0)
         self.menu1.add_cascade(label="Aide",menu=self.fichier)
-        self.fichier.add_command(label="  Utilisation", command=self.use)
         self.fichier.add_command(label="  A propos", command=self.apropos)
         
         self.config(menu=self.menu1)
@@ -126,13 +125,8 @@ class UI(Tkinter.Tk):
         self.update()
         
     def apropos(self):
-        t1=Tkinter.Toplevel()
-        t1.title("A propos")
-        t1.update()
-        
-    
-    def use(self):
-        pass
+        self.apropos = Fenetre()
+ 
         
 #***************************************#
 #Controlleur							#
@@ -194,7 +188,27 @@ class Ctrl:
                 self.event.wait()
             self.clicked()
             self.event.clear()
-           
+ 
+#####################
+#Fenetre (A propos) #
+#####################       
+class Fenetre(Tkinter.Toplevel):
+    
+    def __init__(self):
+        Tkinter.Toplevel.__init__(self)
+        self.title("A propos")
+        self.config()
+        toto = "##########################################################\n"
+        toto = toto + "#\t\tInterface pour l'emulation de la carte STM32LDiscovery\t\t#\n"
+        toto = toto + "#\t\t\t\tavec Qemu\t\t\t\t#\n"
+        toto = toto + "#\t\tEID Timothee - MERCIER Michael - CLAVELIN Aurelien\t\t#\n"
+        toto = toto + "#\t\t\t\t\t\t\t\t\t#\n"
+        toto = toto + "#\t\thttp://air.imag.fr/mediawiki/index.php/Proj-2011-2012-qemu\t\t#\n"
+        toto = toto + "##########################################################\n"
+        self.text= Tkinter.Label(self,anchor='w',text=toto)
+        self.resizable(False,False)
+        self.text.pack()
+        
     
 if __name__ == "__main__":
     app = Ctrl(None)
