@@ -1,6 +1,6 @@
 #include "sysbus.h"
 
-#define NB_IRQ_IN 4
+#define NB_IRQ_NVIC 4
 
 typedef struct {
     SysBusDevice busdev;
@@ -18,11 +18,10 @@ typedef struct {
     uint32_t afrl; /* Alternate function low */
     uint32_t afrh; /* Alternate function high */
 
-    qemu_irq in[];
+    qemu_irq irq[NB_IRQ_NVIC];
+    //qemu_irq in[8]; //Créé implicitement lors de l'appel à la fonction qdev_init_gpio_in(...)
     qemu_irq out[8];
     unsigned char id;
-
-    CharDriverState *chr; /* Char device */
 } stm32_gpio_state;
 
 
@@ -52,8 +51,6 @@ static void stm32_gpio_update(stm32_gpio_state *s) {
     uint32_t mask;
     int i;
 
-    /* Outputs float high.  */
-    /* FIXME: This is board dependent.  */
     changed = s->outd_old ^ s->outd; //XOR: Tous les bits à 1 seront les bits changés
     if (!changed)
         return;
@@ -62,16 +59,18 @@ static void stm32_gpio_update(stm32_gpio_state *s) {
     for (i = 0; i < 8; i++) {
         mask = 1 << i;
         if (changed & mask) {
-            //DPRINTF("Set output %d = %d\n", i, (out & mask) != 0);
-            //qemu_set_irq(s->out[i], (s->data & mask) != 0);
+            //Envoie une IRQ vers le periphérique branché sur la pin du GPIO
+            qemu_set_irq(s->out[i], (s->outd & mask) != 0);
         }
     }
+    /*
     if (s->chr) {
         uint8_t buffer;
         buffer = (uint8_t)s->outd & 0x000000FF;
         //printf("Changement GPIO %d\n", buffer);
         qemu_chr_fe_write(s->chr, &buffer, 1);
     }
+     */
 }
 
 
@@ -112,6 +111,9 @@ static void stm32_gpio_write(void *opaque, target_phys_addr_t offset, uint32_t v
 
 static void stm32_gpio_reset(stm32_gpio_state *s) {
     switch (s->id) {
+        case 'A':
+            s->mode = 0xA8000000;
+            s->outd = 0;
         case 'B':
             s->mode = 0x00000280;
             s->outd = 0;
@@ -123,14 +125,15 @@ static void stm32_gpio_reset(stm32_gpio_state *s) {
 
 }
 
-static void stm32_gpio_set_irq(void * opaque, int irq, int level) {
-    printf("Set irq[%d]->%d\n", irq, level);
-    stm32_gpio_state *s = (stm32_gpio_state *) opaque;
-    qemu_set_irq(s->out[irq], level);
-    //Une pin à changer d'état (quand configurée en entrée
-    //irq: num pin (1->8)
-    //level: nouvel état
-
+/*
+ * Appelé quand une entrée de GPIO reçois une IT
+ */
+static void stm32_gpio_in_recv(void * opaque, int numPin, int level) {
+    if(numPin < NB_IRQ_NVIC) {
+        printf("Set irq[%d]->%d\n", numPin, level);
+        stm32_gpio_state *s = (stm32_gpio_state *) opaque;
+        qemu_set_irq(s->out[numPin], level);
+    }
 }
 
 static CPUReadMemoryFunc * const stm32_gpio_readfn[] = {
@@ -145,18 +148,18 @@ static CPUWriteMemoryFunc * const stm32_gpio_writefn[] = {
     stm32_gpio_write
 };
 
+
+/*
 static int stm32_can_receive(void *opaque)
 {
     return 1;
-/*
-    stm32_gpio_state *s = (stm32_gpio_state *)opaque;
-
-    if (s->lcr & 0x10)
-        return s->read_count < 16;
-    else
-        return s->read_count < 1;
-*/
+    //stm32_gpio_state *s = (stm32_gpio_state *)opaque;
+    //if (s->lcr & 0x10)
+    //    return s->read_count < 16;
+    //else
+    //    return s->read_count < 1;
 }
+
 
 static void stm32_receive(void *opaque, const uint8_t* buf, int size)
 {
@@ -178,31 +181,38 @@ static void stm32_receive(void *opaque, const uint8_t* buf, int size)
 
 static void stm32_event(void *opaque, int event)
 {
-/*
-    if (event == CHR_EVENT_BREAK)
-        pl011_put_fifo(opaque, 0x400);
-*/
+    //if (event == CHR_EVENT_BREAK)
+    //    pl011_put_fifo(opaque, 0x400);
 }
+*/
+
 
 static int stm32_gpio_init(SysBusDevice *dev, const unsigned char id) {
     int iomemtype;
     stm32_gpio_state *s = FROM_SYSBUS(stm32_gpio_state, dev);
     s->id = id;
-    iomemtype = cpu_register_io_memory(stm32_gpio_readfn,
-            stm32_gpio_writefn, s,
-            DEVICE_NATIVE_ENDIAN);
+    iomemtype = cpu_register_io_memory(stm32_gpio_readfn, stm32_gpio_writefn, s, DEVICE_NATIVE_ENDIAN);
     sysbus_init_mmio(dev, 0x1000, iomemtype);
+    
+    //Initialisation des IRQ
     int i;
-    for (i=0;i<)
-    sysbus_init_irq(dev, &s->in[i]);
-    qdev_init_gpio_in(&dev->qdev, stm32_gpio_set_irq, 8);
+    for (i=0;i<NB_IRQ_NVIC; i++){
+        sysbus_init_irq(dev, &s->irq[i]);
+    }
+    
+    //Initialisation des pins d'entrées
+    qdev_init_gpio_in(&dev->qdev, stm32_gpio_in_recv, 8);
+    
+    //Initialisation des pins de sorties
     qdev_init_gpio_out(&dev->qdev, s->out, 8);
 
-    //s->chr = qdev_init_chardev(&dev->qdev);
+    /*
+    s->chr = qdev_init_chardev(&dev->qdev);
     s->chr = qemu_chr_find("B");
     if (s->chr) {
         qemu_chr_add_handlers(s->chr, stm32_can_receive, stm32_receive, stm32_event, s);
     }
+    */
     stm32_gpio_reset(s);
 
     vmstate_register(&dev->qdev, -1, &vmstate_stm32_gpio, s);
@@ -215,15 +225,27 @@ static int stm32_gpio_init_B(SysBusDevice *dev) {
     return stm32_gpio_init(dev, 'B');
 }
 
-static SysBusDeviceInfo stm32_gpio_info = {
+static SysBusDeviceInfo stm32_gpioB_info = {
     .init = stm32_gpio_init_B,
     .qdev.name = "stm32_gpio_B",
     .qdev.size = sizeof (stm32_gpio_state),
     .qdev.vmsd = &vmstate_stm32_gpio,
 };
 
+static int stm32_gpio_init_A(SysBusDevice *dev) {
+    return stm32_gpio_init(dev, 'A');
+}
+
+static SysBusDeviceInfo stm32_gpioA_info = {
+    .init = stm32_gpio_init_A,
+    .qdev.name = "stm32_gpio_A",
+    .qdev.size = sizeof (stm32_gpio_state),
+    .qdev.vmsd = &vmstate_stm32_gpio,
+};
+
 static void stm32_gpio_register_devices(void) {
-    sysbus_register_withprop(&stm32_gpio_info);
+    sysbus_register_withprop(&stm32_gpioA_info);
+    sysbus_register_withprop(&stm32_gpioB_info);
 }
 
 device_init(stm32_gpio_register_devices)

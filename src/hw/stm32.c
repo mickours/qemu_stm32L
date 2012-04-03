@@ -5,6 +5,7 @@
 #include "boards.h"
 #include "devices.h"
 
+#define NB_NVIC_IRQ 5
 #define NB_GPIO 6
 
 #define GPIO_A 0 //0x4002 0000 - 0x4002 03FF
@@ -129,11 +130,21 @@ static int stm32l_sys_init(uint32_t base, qemu_irq irq,
 
 
 
-static void stm32l152rbt6_init(ram_addr_t ram_size,
-        const char *boot_device,
-        const char *kernel_filename, const char *kernel_cmdline,
-        const char *initrd_filename, const char *cpu_model) {
+static void stm32l152rbt6_init(ram_addr_t ram_size, const char *boot_device, const char *kernel_filename, const char *kernel_cmdline, const char *initrd_filename, const char *cpu_model) {
+    int i,j;
 
+    //Préparation de la mémoire
+    MemoryRegion *address_space_mem = get_system_memory();
+    uint16_t flash_size = stm32_board.f_size; //128KBits
+    uint16_t sram_size = 0x0010; //16 KBits
+    
+    
+    //Initialisation du processeur (+ mémoire)
+    qemu_irq* pic = armv7m_init(address_space_mem, flash_size, sram_size, kernel_filename, cpu_model);
+    stm32l_sys_init(0x1FF00000, pic[28], &stm32_board); //TODO: Vérifier pic[28]
+    
+    
+    //Structures GPIO
     static const uint32_t gpio_addr[NB_GPIO] = {
         0x40020000, //GPIO_A
         0x40020400, //GPIO_B
@@ -142,34 +153,38 @@ static void stm32l152rbt6_init(ram_addr_t ram_size,
         0x40021000, //GPIO_E
         0x40021400  //GPIO_H
     };
-
-    static const int gpio_irq[NB_GPIO] = {6,7,8,9,10,23,40};
-
-
-    qemu_irq *pic;
-    DeviceState * gpio_dev[NB_GPIO];
-    //qemu_irq gpio_in[NB_GPIO][8];
+    static const int gpio_idIrqNVIC[NB_NVIC_IRQ] = {6,7,8,9,10};
+    DeviceState* gpio_dev[NB_GPIO];
+    qemu_irq gpio_in[NB_GPIO][NB_NVIC_IRQ];
     qemu_irq gpio_out[NB_GPIO][8];
-    uint16_t flash_size;
-    uint16_t sram_size;
-    int i,j;
-
-
-    MemoryRegion *address_space_mem = get_system_memory();
-
-    flash_size = stm32_board.f_size; //128KBits
-    sram_size = 0x0010; //16 KBits
-    pic = armv7m_init(address_space_mem,
-            flash_size, sram_size, kernel_filename, cpu_model);
-
-    stm32l_sys_init(0x1FF00000, pic[28], &stm32_board); //TODO: Vérifier pic[28]
     
+    
+    //Structures des LED
+    DeviceState* led_dev6, led_dev7;
+    
+    
+    
+    //Initialisation du GPIO_A
+    gpio_dev[GPIO_A] = sysbus_create_varargs("stm32_gpio_A", gpio_addr[GPIO_A], pic[gpio_idIrqNVIC[0]], pic[gpio_idIrqNVIC[1]], pic[gpio_idIrqNVIC[2]], pic[gpio_idIrqNVIC[3]], pic[gpio_idIrqNVIC[4]], NULL);
+    for(j=0; j<8; j++) {
+        qdev_connect_gpio_out(gpio_dev[GPIO_A], j, gpio_out[GPIO_A][j]); //Connecte la sortie du GPIO à des "fils vides"
+        //TODO: connexion au bouton PA0
+        //qemu_irq boutonIRQ = qdev_get_gpio_in(gpio_dev[GPIO_A], 0);
+    }
     
     //Initialisation du GPIO_B
-    gpio_dev[1] = sysbus_create_varargs("stm32_gpio_B", gpio_addr[1], pic[6], pic[7], pic[8], pic[9], pic[10], NULL);
-    
+    gpio_dev[GPIO_B] = sysbus_create_varargs("stm32_gpio_B", gpio_addr[GPIO_B], pic[gpio_idIrqNVIC[0]], pic[gpio_idIrqNVIC[1]], pic[gpio_idIrqNVIC[2]], pic[gpio_idIrqNVIC[3]], pic[gpio_idIrqNVIC[4]], NULL);
     for(j=0; j<8; j++) {
-        qdev_connect_gpio_out(gpio_dev[1], j, gpio_out[1][j]);
+        //TODO: Reprendre le contenu de cette boucle
+        qdev_connect_gpio_out(gpio_dev[GPIO_B], j, gpio_out[GPIO_B][j]); //Connecte la sortie du GPIO à des "fils vides"
+        if(j == 5) {
+            //LED 6
+            led_dev6 = sysbus_create_varargs("stm32_led", 0x00000000);
+            qdev_connect_gpio_out()
+        } else if(j ==6) {
+            //LED 7
+            
+        }
     }
     
 
