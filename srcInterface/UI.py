@@ -37,42 +37,65 @@ class UI(Tkinter.Tk):
         self.grid()
         
         '''
-        self.labelIP = Tkinter.Label(self,anchor='w',text="IP :")
+        ## champ IP ##
+        self.labelIP = Tkinter.Label(self,anchor='w',text="IP du serveur Qemu :")
         self.labelIP.grid(column=0,row=0,sticky='EW')
         
         self.entryVariableIP = Tkinter.StringVar()
-        self.entryVariableIP.set("Not supported")
+        self.entryVariableIP.set("Not supported yet")
         self.entryIP = Tkinter.Entry(self,textvariable=self.entryVariableIP)
         self.entryIP.grid(column=0,row=1,sticky='EW')
         '''
         
-        self.labelPort = Tkinter.Label(self,anchor='w',text="Port :")
-        self.labelPort.grid(column=0,row=2,sticky='EW') 
+        ## champ Port LED verte ##
+        self.labelPortVerte = Tkinter.Label(self,anchor='w',text="Port LED verte :")
+        self.labelPortVerte.grid(column=0,row=2,sticky='EW') 
         
-        self.entryVariablePort = Tkinter.StringVar()
-        self.entryVariablePort.set(u"4242")
-        self.entryPort = Tkinter.Entry(self,textvariable=self.entryVariablePort)
-        self.entryPort.grid(column=0,row=3,sticky='EW')
+        self.entryVariablePortVerte = Tkinter.StringVar()
+        self.entryVariablePortVerte.set(u"4242")
+        self.entryPortVerte = Tkinter.Entry(self,textvariable=self.entryVariablePortVerte)
+        self.entryPortVerte.grid(column=0,row=3,sticky='EW')
         
-        button = Tkinter.Button(self,text="Lancer",command=self.OnButtonConnexionClick)
-        button.grid(column=0,row=4,sticky="EW")
+        ## champ Port LED Bleue ##
+        self.labelPortBleue = Tkinter.Label(self,anchor='w',text="Port LED bleue :")
+        self.labelPortBleue.grid(column=0,row=4,sticky='EW') 
+        
+        self.entryVariablePortBleue = Tkinter.StringVar()
+        self.entryVariablePortBleue.set(u"4243")
+        self.entryPortBleue = Tkinter.Entry(self,textvariable=self.entryVariablePortBleue)
+        self.entryPortBleue.grid(column=0,row=5,sticky='EW')
+        
+        ## champ Port Bouton ##
+        self.labelPortBouton = Tkinter.Label(self,anchor='w',text="Port Bouton :")
+        self.labelPortBouton.grid(column=0,row=6,sticky='EW') 
+        
+        self.entryVariablePortBouton = Tkinter.StringVar()
+        self.entryVariablePortBouton.set(u"4244")
+        self.entryPortBouton = Tkinter.Entry(self,textvariable=self.entryVariablePortBouton)
+        self.entryPortBouton.grid(column=0,row=7,sticky='EW')
+        
+        
+        button = Tkinter.Button(self,text="Lancer",command=self.OnButtonLancerClick)
+        button.grid(column=0,row=8,sticky="EW")
         
         self.labelLog = Tkinter.Label(self,anchor='w',text="Log : ")
-        self.labelLog.grid(column=0,row=7,sticky='EW')
+        self.labelLog.grid(column=0,row=9,sticky='EW')
         
         self.log = Tkinter.Text(width=20,height=20)
-        self.log.grid(column=0,row=8,sticky='EWNS',rowspan=50)
+        self.log.grid(column=0,row=10,sticky='EWNS',rowspan=50)
         self.log.insert(Tkinter.END,"")
         
         button2 = Tkinter.Button(self,text="Vider",command=self.Clear)
-        button2.grid(column=0,row=59,sticky="EW")
+        button2.grid(column=0,row=60,sticky="EW")
         
-        scrollbar = Tkinter.Scrollbar(self.log)
+        scrollbar = Tkinter.Scrollbar(self.log,width=10)
         scrollbar.pack(side='right', fill='y')
         
-        self.log.config(yscrollcommand=scrollbar.set)
         scrollbar.config(command=self.log.yview)
-
+        self.log.config(yscrollcommand=scrollbar.set)
+        
+        
+        # Images #
         self.carte=PhotoImage(file="carte.gif")
         self.ledBlanche=PhotoImage(file="LEDblanche.gif")
         self.ledBleue=PhotoImage(file="LEDbleue.gif")
@@ -85,27 +108,35 @@ class UI(Tkinter.Tk):
         
         self.canvas.create_image(70,390,image=self.user, tag="user", anchor = "nw")
         self.canvas.create_image(150,390,image=self.user, tag="reset", anchor = "nw")
-        self.canvas.tag_bind("reset", "<Button-1>",self.Reset)
-        self.canvas.tag_bind("user", "<Button-1>",self.User)
+        self.canvas.tag_bind("reset", "<B1-ButtonRelease>",self.Reset)
+        self.canvas.tag_bind("user", "<Button-1>",self.UserPressed)
+        self.canvas.tag_bind("user", "<B1-ButtonRelease>",self.UserReleased)
+        
+        
         
         self.ledGauche = self.canvas.create_image(35,400, anchor = "nw", image=self.ledBlanche)
         self.ledDroite = self.canvas.create_image(190,400, anchor = "nw", image=self.ledBlanche)
         
         #self.grid_columnconfigure(1,weight=1)
         #self.grid_columnconfigure(0,weight=1) INUTILE
-        self.grid_rowconfigure(0,weight=1) #Gestion verticale de l'agrandissement
+        #self.grid_rowconfigure(0,weight=1) #Gestion verticale de l'agrandissement
         self.resizable(False,False) #Pas redimentionable !
         
         
         #self.geometry(self.geometry())
         self.update()
         
-    def OnButtonConnexionClick(self):
+    def OnButtonLancerClick(self):
         app.event.set()
         
-    def User(self,none):
-        self.log.insert(Tkinter.END,"User button clicked\n")
-        app.user_clicked()
+    def UserPressed(self,none):
+        self.log.insert(Tkinter.END,"User button pressed\n")
+        app.user_pressed()
+        self.log.see(Tkinter.END)
+        
+    def UserReleased(self,none):
+        self.log.insert(Tkinter.END,"User button released\n")
+        app.user_released()
         self.log.see(Tkinter.END)
         
     def Reset(self,none):
@@ -133,60 +164,101 @@ class UI(Tkinter.Tk):
 #***************************************#
 class Ctrl:
     def __init__(self,parent):
+        self.serversocketVerte = None
+        self.serversocketBleue = None
+        self.serversocketBouton = None
+        self.connVerte, self.addrVerte = None,None
+        self.connBleue, self.addrBleue = None,None
+        self.connBouton, self.addrBouton = None,None
         self.ui = UI(parent)
         self.on = False
         self.event = threading.Event()
-        self.thread=threading.Thread(target=self.fct_thread)
-        self.thread.setDaemon(True)
-        self.thread.start()
+        self.thread_verte=threading.Thread(target=self.fct_thread,
+                                           args=("verte",self.ui.entryPortVerte,self.serversocketVerte,self.connVerte,self.addrVerte))
+        self.thread_verte.setDaemon(True)
+        self.thread_bleue=threading.Thread(target=self.fct_thread,
+                                           args=("bleue",self.ui.entryPortBleue,self.serversocketBleue,self.connBleue,self.addrBleue))
+        self.thread_bleue.setDaemon(True)
+        self.thread_bouton=threading.Thread(target=self.fct_thread,
+                                           args=("bouton",self.ui.entryPortBouton,self.serversocketBouton,self.connBouton,self.addrBouton))
+        self.thread_bouton.setDaemon(True)
+        self.thread_verte.start()
+        self.thread_bleue.start()
+        self.thread_bouton.start()
         
-    def close_conn(self):
-        if hasattr(self,'conn') :
-            self.conn.close()
-            self.ui.log.insert(Tkinter.END,"Non connecte\n")
+    def close_conn(self,conn):
+            conn.close()
+            self.ui.log.insert(Tkinter.END,"Deconnexion \n")
             
-    def user_clicked(self):
-        self.conn.send(struct.pack('B',1))
-        self.conn.send(struct.pack('B',0))
+    def user_pressed(self):
+        if self.connBouton != None :
+            self.connBouton.send(struct.pack('B',1))
+        else :
+            self.ui.log.insert(Tkinter.END,"User button not connected\n")
+            
+    def user_released(self):
+        if self.connBouton != None :
+            self.connBouton.send(struct.pack('B',0))
+        else :
+            self.ui.log.insert(Tkinter.END,"User button not connected")
         
-    def traiterrecv(self):
+    def traiterrecv(self,conn):
         while 1:
-            data = self.conn.recv(1)
+            data = conn.recv(1)
             if not data: break
-            if ord(data) == 0:
-                self.ui.canvas.itemconfigure(self.ui.ledGauche, image=self.ui.ledBlanche)
-                self.ui.canvas.itemconfigure(self.ui.ledDroite, image=self.ui.ledBlanche)
-                self.ui.log.insert(Tkinter.END,"Donnee recue : " + str(ord(data)) + "\n" + "=>LEDs off\n")
-            elif ord(data) == 192:
-                self.ui.canvas.itemconfigure(self.ui.ledGauche, image=self.ui.ledBleue)
-                self.ui.canvas.itemconfigure(self.ui.ledDroite, image=self.ui.ledVerte)
-                self.ui.log.insert(Tkinter.END,"Donnee recue : " + str(ord(data)) + "\n" + "=>LEDs on\n")
-            else:
-                self.ui.log.insert(Tkinter.END,"Donnee recue : " + str(ord(data)) + "\n" + "=>non reconnue\n")
+            if conn == self.connVerte :
+                if ord(data) == 0:
+                    self.ui.canvas.itemconfigure(self.ui.ledDroite, image=self.ui.ledBlanche)
+                    self.ui.log.insert(Tkinter.END,"Data " + str(ord(data)) + " received on" + " connection verte\n")
+                elif ord(data) == 1:
+                    self.ui.canvas.itemconfigure(self.ui.ledDroite, image=self.ui.ledVerte)
+                    self.ui.log.insert(Tkinter.END,"Data " + str(ord(data)) + " received on" + " connection verte\n")
+                else:
+                    self.ui.log.insert(Tkinter.END,"Data " + str(ord(data)) + " received on" + " connection verte => unknown\n")
+            elif conn == self.connBleue :
+                if ord(data) == 0:
+                    self.ui.canvas.itemconfigure(self.ui.ledDroite, image=self.ui.ledBlanche)
+                    self.ui.log.insert(Tkinter.END,"Data " + str(ord(data)) + " received on" + " connection bleue\n")
+                elif ord(data) == 1:
+                    self.ui.canvas.itemconfigure(self.ui.ledDroite, image=self.ui.ledBleue)
+                    self.ui.log.insert(Tkinter.END,"Data " + str(ord(data)) + " received on" + " connection bleue\n")
+                else:
+                    self.ui.log.insert(Tkinter.END,"Data " + str(ord(data)) + " received on" + " connection bleue => unknown\n")
+            elif conn == self.connBouton:
+                self.ui.log.insert(Tkinter.END,"Data " + str(ord(data)) +" received on connection bouton => error \n")
             self.ui.log.see(Tkinter.END)
             self.ui.update()
     
-    def clicked(self):
-        self.serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.serversocket.bind((socket.gethostname(), int(self.ui.entryVariablePort.get())))
-        self.serversocket.listen(1)
-        self.ui.log.insert(Tkinter.END,"En attente de connexion sur le port " + self.ui.entryVariablePort.get()+ "\n")
+    def launch_server(self,name,entryPort,serversocket,conn,addr):
+        serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        serversocket.bind((socket.gethostname(), int(entryPort.get())))
+        serversocket.listen(1)
+        self.ui.log.insert(Tkinter.END,"En attente de connexion sur le port " + entryPort.get()+ "\n")
         self.ui.update() 
-        self.conn, self.addr = self.serversocket.accept()
+        conn, addr = serversocket.accept()
+        if name == "verte" :
+            self.serversocketVerte = serversocket
+            self.connVerte = conn
+        if name == "bleue" :
+            self.serversocketBleue = serversocket
+            self.connBleue = conn
+        if name == "bouton" :
+            self.serversocketBouton = serversocket
+            self.connBouton = conn
         self.ui.log.insert(Tkinter.END,"Connecte \n")
         self.ui.update()
-        self.traiterrecv()
-        self.close_conn()
+        self.traiterrecv(conn)
+        self.close_conn(conn)
         
     def tester(self):
         self.ui.canvas.itemconfigure(self.ui.ledGauche, image=self.ui.ledBleue)
         self.ui.canvas.itemconfigure(self.ui.ledDroite, image=self.ui.ledVerte)
         
-    def fct_thread(self):
+    def fct_thread(self,name,entryPort,serversocket,conn,addr):
         while 1:
             while not self.event.isSet():
                 self.event.wait()
-            self.clicked()
+            self.launch_server(name,entryPort,serversocket,conn,addr)
             self.event.clear()
  
 #####################
@@ -209,7 +281,10 @@ class Fenetre(Tkinter.Toplevel):
         self.resizable(False,False)
         self.text.pack()
         
-    
+
+#####################
+#Main               #
+#####################   
 if __name__ == "__main__":
     app = Ctrl(None)
     app.ui.title('STM32LDiscovery UI')
