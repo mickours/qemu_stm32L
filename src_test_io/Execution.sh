@@ -8,4 +8,4 @@ rm *.o
 
 #Execution dans Qemu
 echo "Execution dans Qemu"
-../src/arm-softmmu/qemu-system-arm -M stm32l152rbt6 -nographic -chardev socket,id=B,port=4242,host=localhost,nodelay -kernel ./main.bin
+../src/arm-softmmu/qemu-system-arm -M stm32l152rbt6 -nographic -chardev socket,id=led_green,port=4242,host=localhost,nodelay -chardev socket,id=led_blue,port=4243,host=localhost,nodelay -chardev socket,id=user0,port=4244,host=localhost,nodelay -kernel ./main.bin
