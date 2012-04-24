@@ -217,10 +217,10 @@ class Ctrl:
                     self.ui.log.insert(Tkinter.END,"Data " + str(ord(data)) + " received on" + " connection verte => unknown\n")
             elif conn == self.connBleue :
                 if ord(data) == 0:
-                    self.ui.canvas.itemconfigure(self.ui.ledDroite, image=self.ui.ledBlanche)
+                    self.ui.canvas.itemconfigure(self.ui.ledGauche, image=self.ui.ledBlanche)
                     self.ui.log.insert(Tkinter.END,"Data " + str(ord(data)) + " received on" + " connection bleue\n")
                 elif ord(data) == 1:
-                    self.ui.canvas.itemconfigure(self.ui.ledDroite, image=self.ui.ledBleue)
+                    self.ui.canvas.itemconfigure(self.ui.ledGauche, image=self.ui.ledBleue)
                     self.ui.log.insert(Tkinter.END,"Data " + str(ord(data)) + " received on" + " connection bleue\n")
                 else:
                     self.ui.log.insert(Tkinter.END,"Data " + str(ord(data)) + " received on" + " connection bleue => unknown\n")
@@ -232,17 +232,21 @@ class Ctrl:
     def launch_server(self,name,entryPort,serversocket,conn,addr):
         serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         serversocket.bind((socket.gethostname(), int(entryPort.get())))
-        serversocket.listen(1)
-        self.ui.log.insert(Tkinter.END,"En attente de connexion sur le port " + entryPort.get()+ "\n")
-        self.ui.update() 
+        serversocket.listen(1) 
         conn, addr = serversocket.accept()
         if name == "verte" :
+            self.ui.log.insert(Tkinter.END,"En attente de connexion sur le port " + entryPort.get()+ " pour la LED verte\n")
+            self.ui.update()
             self.serversocketVerte = serversocket
             self.connVerte = conn
         if name == "bleue" :
+            self.ui.log.insert(Tkinter.END,"En attente de connexion sur le port " + entryPort.get()+ " pour la LED bleue\n")
+            self.ui.update()
             self.serversocketBleue = serversocket
             self.connBleue = conn
         if name == "bouton" :
+            self.ui.log.insert(Tkinter.END,"En attente de connexion sur le port " + entryPort.get()+ " pour le bouton\n")
+            self.ui.update()
             self.serversocketBouton = serversocket
             self.connBouton = conn
         self.ui.log.insert(Tkinter.END,"Connecte \n")
