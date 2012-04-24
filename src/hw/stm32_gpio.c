@@ -35,6 +35,7 @@ static const VMStateDescription vmstate_stm32_gpio = {
         VMSTATE_UINT32(pupd, stm32_gpio_state),
         VMSTATE_UINT16(ind, stm32_gpio_state),
         VMSTATE_UINT16(outd, stm32_gpio_state),
+        VMSTATE_UINT16(outd_old, stm32_gpio_state),
         VMSTATE_UINT32(bsr, stm32_gpio_state),
         VMSTATE_UINT32(lck, stm32_gpio_state),
         VMSTATE_UINT32(afrl, stm32_gpio_state),
@@ -59,8 +60,8 @@ static void stm32_gpio_update(stm32_gpio_state *s) {
         if (changed & mask) {
             //Conditions de changement
             //--Mode register != 00
-            uint32_t mask = (1 << (i*2)) | (1 << ((i*2) + 1));
-            if((s->mode & mask) != 0) {
+            uint32_t modeMask = (1 << (i*2)) | (1 << ((i*2) + 1));
+            if((s->mode & modeMask) != 0) {
                 //Envoie une IRQ vers le periphérique branché sur la pin du GPIO
                 //FIXME: La transmition vers la pin est directe alors qu'elle devrait se produire lors du prochain tick de la RCC
                 qemu_set_irq(s->irq_out[i], (s->outd & mask) != 0);
@@ -233,7 +234,7 @@ static int stm32_gpio_init(SysBusDevice *dev, const unsigned char id) {
     
     //Initialisation de la plage mémoire
     iomemtype = cpu_register_io_memory(stm32_gpio_readfn, stm32_gpio_writefn, s, DEVICE_NATIVE_ENDIAN);
-    sysbus_init_mmio(dev, 0x1000, iomemtype);
+    sysbus_init_mmio(dev, 0x24, iomemtype);
     
     //Initialisation des pins
     qdev_init_gpio_in(&dev->qdev, stm32_gpio_in_recv, NB_PIN);

@@ -44,7 +44,7 @@ static void stm32_receive(void *opaque, const uint8_t* buf, int size)
 static void stm32_event(void *opaque, int event) {/*NOT USED*/}
 
 
-static int stm32_button_init(SysBusDevice *dev, const unsigned char* id) {
+static int stm32_button_init(SysBusDevice *dev, const char* id) {
     stm32_button_state *s = FROM_SYSBUS(stm32_button_state, dev);
     
     //Initialisation de la pin de sortie
@@ -59,7 +59,7 @@ static int stm32_button_init(SysBusDevice *dev, const unsigned char* id) {
     
     stm32_button_reset(s);
     vmstate_register(&dev->qdev, -1, &vmstate_stm32_button, s);
-
+ 
     return 0;
 }
 

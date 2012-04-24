@@ -45,7 +45,7 @@ static void stm32_receive(void *opaque, const uint8_t* buf, int size) {} //Une L
 static void stm32_event(void *opaque, int event) {}
 
 
-static int stm32_led_init(SysBusDevice *dev, const unsigned char* id) {
+static int stm32_led_init(SysBusDevice *dev, const char* id) {
     stm32_led_state *s = FROM_SYSBUS(stm32_led_state, dev);
     
     
@@ -65,7 +65,7 @@ static int stm32_led_init(SysBusDevice *dev, const unsigned char* id) {
     return 0;
 }
 
-
+ 
 static int stm32_led_init_Blue(SysBusDevice *dev) {
     return stm32_led_init(dev, "led_blue");
 }

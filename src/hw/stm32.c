@@ -144,24 +144,24 @@ static void stm32l152rbt6_init(ram_addr_t ram_size, const char *boot_device, con
         0x40021000, //GPIO_E
         0x40021400  //GPIO_H
     };
-    static const int gpio_idIrqNVIC[NB_NVIC_IRQ] = {6,7,8,9,10};
+//    static const int gpio_idIrqNVIC[NB_NVIC_IRQ] = {6,7,8,9,10};
     DeviceState* gpio_dev[NB_GPIO];    
     
     //Création du bouton
-    DeviceState* button = sysbus_create_simple("stm32_button", 0x0, NULL);
+    DeviceState* button = sysbus_create_simple("stm32_button", -1, NULL);
     
     //Création des leds
-    DeviceState* led_dev6 = sysbus_create_simple("stm32_led_blue", 0x0, NULL);
-    DeviceState* led_dev7 = sysbus_create_simple("stm32_led_green", 0x0, NULL);
+    DeviceState* led_dev6 = sysbus_create_simple("stm32_led_blue", -1, NULL);
+    DeviceState* led_dev7 = sysbus_create_simple("stm32_led_green", -1, NULL);
     
     
     //Initialisation du GPIO_A
-    gpio_dev[GPIO_A] = sysbus_create_varargs("stm32_gpio_A", gpio_addr[GPIO_A], pic[gpio_idIrqNVIC[0]], pic[gpio_idIrqNVIC[1]], pic[gpio_idIrqNVIC[2]], pic[gpio_idIrqNVIC[3]], pic[gpio_idIrqNVIC[4]], NULL);
+    gpio_dev[GPIO_A] = sysbus_create_varargs("stm32_gpio_A", gpio_addr[GPIO_A], NULL); //, pic[gpio_idIrqNVIC[0]], pic[gpio_idIrqNVIC[1]], pic[gpio_idIrqNVIC[2]], pic[gpio_idIrqNVIC[3]], pic[gpio_idIrqNVIC[4]], NULL);
     qemu_irq entreeBouton = qdev_get_gpio_in(gpio_dev[GPIO_A], 0);
     qdev_connect_gpio_out(button, 0, entreeBouton);
     
     //Initialisation du GPIO_B
-    gpio_dev[GPIO_B] = sysbus_create_varargs("stm32_gpio_B", gpio_addr[GPIO_B], pic[gpio_idIrqNVIC[0]], pic[gpio_idIrqNVIC[1]], pic[gpio_idIrqNVIC[2]], pic[gpio_idIrqNVIC[3]], pic[gpio_idIrqNVIC[4]], NULL);
+    gpio_dev[GPIO_B] = sysbus_create_varargs("stm32_gpio_B", gpio_addr[GPIO_B], NULL); //, pic[gpio_idIrqNVIC[0]], pic[gpio_idIrqNVIC[1]], pic[gpio_idIrqNVIC[2]], pic[gpio_idIrqNVIC[3]], pic[gpio_idIrqNVIC[4]], NULL);
     qemu_irq entreeLED6 = qdev_get_gpio_in(led_dev6, 0);
     qdev_connect_gpio_out(gpio_dev[GPIO_B], 6, entreeLED6);
     qemu_irq entreeLED7 = qdev_get_gpio_in(led_dev7, 0);
