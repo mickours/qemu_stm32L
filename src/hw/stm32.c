@@ -29,17 +29,17 @@ static stm32_board_info stm32_board = {
 typedef struct {
     uint32_t int_status;
     uint32_t int_mask;
-    uint32_t user0;
-    uint32_t user1;
     qemu_irq irq;
     stm32_board_info* board;
 } ssys_state;
 
 
+/*
 static void ssys_update(ssys_state *s)
 {
   qemu_set_irq(s->irq, (s->int_status & s->int_mask) != 0);
 }
+*/
 
 static void ssys_reset(void *opaque)
 {
@@ -48,28 +48,24 @@ static void ssys_reset(void *opaque)
 
 static uint32_t ssys_read(void *opaque, target_phys_addr_t offset)
 {
-    ssys_state *s = (ssys_state *)opaque;
+    //ssys_state *s = (ssys_state *)opaque;
 
-    switch (offset) {
-    case 0x1e0: /* USER0 */
-        return s->user0;
-    case 0x1e4: /* USER1 */
-        return s->user1;
-    default:
+    //switch (offset) {
+    //default:
         //hw_error("ssys_read: Bad offset 0x%x\n", (int)offset);
-        return 0;
-    }
+    //}
+    return 0;
 }
 
 static void ssys_write(void *opaque, target_phys_addr_t offset, uint32_t value)
 {
-    ssys_state *s = (ssys_state *)opaque;
+    //ssys_state *s = (ssys_state *)opaque;
 
-    switch (offset) {
+    //switch (offset) {
   //  default:
         //hw_error("ssys_write: Bad offset 0x%x\n", (int)offset);
-    }
-    ssys_update(s);
+    //}
+    //ssys_update(s);
 }
 
 
@@ -88,10 +84,7 @@ static CPUWriteMemoryFunc * const ssys_writefn[] = {
 
 static int stm32_sys_post_load(void *opaque, int version_id)
 {
-    //ssys_state *s = opaque;
-
     //Nothing to do
-    
     return 0;
 }
 
@@ -131,8 +124,6 @@ static int stm32l_sys_init(uint32_t base, qemu_irq irq,
 
 
 static void stm32l152rbt6_init(ram_addr_t ram_size, const char *boot_device, const char *kernel_filename, const char *kernel_cmdline, const char *initrd_filename, const char *cpu_model) {
-    int i,j;
-
     //Préparation de la mémoire
     MemoryRegion *address_space_mem = get_system_memory();
     uint16_t flash_size = stm32_board.f_size; //128KBits
@@ -141,7 +132,7 @@ static void stm32l152rbt6_init(ram_addr_t ram_size, const char *boot_device, con
     
     //Initialisation du processeur (+ mémoire)
     qemu_irq* pic = armv7m_init(address_space_mem, flash_size, sram_size, kernel_filename, cpu_model);
-    stm32l_sys_init(0x1FF00000, pic[28], &stm32_board); //TODO: Vérifier pic[28]
+    stm32l_sys_init(0x1FF00000, pic[28], &stm32_board); //FIXME: Vérifier l'implémentation de la sys memory
     
     
     //Structures GPIO
@@ -154,58 +145,27 @@ static void stm32l152rbt6_init(ram_addr_t ram_size, const char *boot_device, con
         0x40021400  //GPIO_H
     };
     static const int gpio_idIrqNVIC[NB_NVIC_IRQ] = {6,7,8,9,10};
-    DeviceState* gpio_dev[NB_GPIO];
-    qemu_irq gpio_in[NB_GPIO][NB_NVIC_IRQ];
-    qemu_irq gpio_out[NB_GPIO][8];
+    DeviceState* gpio_dev[NB_GPIO];    
     
+    //Création du bouton
+    DeviceState* button = sysbus_create_simple("stm32_button", 0x0, NULL);
     
-    //Structures des LED
-    DeviceState* led_dev6, led_dev7;
-    
+    //Création des leds
+    DeviceState* led_dev6 = sysbus_create_simple("stm32_led_blue", 0x0, NULL);
+    DeviceState* led_dev7 = sysbus_create_simple("stm32_led_green", 0x0, NULL);
     
     
     //Initialisation du GPIO_A
     gpio_dev[GPIO_A] = sysbus_create_varargs("stm32_gpio_A", gpio_addr[GPIO_A], pic[gpio_idIrqNVIC[0]], pic[gpio_idIrqNVIC[1]], pic[gpio_idIrqNVIC[2]], pic[gpio_idIrqNVIC[3]], pic[gpio_idIrqNVIC[4]], NULL);
-    for(j=0; j<8; j++) {
-        qdev_connect_gpio_out(gpio_dev[GPIO_A], j, gpio_out[GPIO_A][j]); //Connecte la sortie du GPIO à des "fils vides"
-        //TODO: connexion au bouton PA0
-        //qemu_irq boutonIRQ = qdev_get_gpio_in(gpio_dev[GPIO_A], 0);
-    }
+    qemu_irq entreeBouton = qdev_get_gpio_in(gpio_dev[GPIO_A], 0);
+    qdev_connect_gpio_out(button, 0, entreeBouton);
     
     //Initialisation du GPIO_B
     gpio_dev[GPIO_B] = sysbus_create_varargs("stm32_gpio_B", gpio_addr[GPIO_B], pic[gpio_idIrqNVIC[0]], pic[gpio_idIrqNVIC[1]], pic[gpio_idIrqNVIC[2]], pic[gpio_idIrqNVIC[3]], pic[gpio_idIrqNVIC[4]], NULL);
-    for(j=0; j<8; j++) {
-        //TODO: Reprendre le contenu de cette boucle
-        qdev_connect_gpio_out(gpio_dev[GPIO_B], j, gpio_out[GPIO_B][j]); //Connecte la sortie du GPIO à des "fils vides"
-        if(j == 5) {
-            //LED 6
-            led_dev6 = sysbus_create_varargs("stm32_led", 0x00000000);
-            qdev_connect_gpio_out()
-        } else if(j ==6) {
-            //LED 7
-            
-        }
-    }
-    
-
-    /*
-     for (i = 0; i < NB_GPIO; i++) {
-        //gpio_dev[i] = sysbus_create_simple("pl061", gpio_addr[i], pic[gpio_irq[i]]);
-        //gpio_dev[i] = sysbus_create_simple("pl061", gpio_addr[i], NULL);
-        for (j = 0; j < 8; j++) {
-            //gpio_in[i][j] = qdev_get_gpio_in(gpio_dev[i], j);
-            gpio_out[i][j] = NULL;
-        }
-    }
-
-    for (i = 0; i < NB_GPIO; i++) {
-        for (j = 0; j < 8; j++) {
-            if (gpio_out[i][j]) {
-                qdev_connect_gpio_out(gpio_dev[i], j, gpio_out[i][j]);
-            }
-        }
-    }
-    */
+    qemu_irq entreeLED6 = qdev_get_gpio_in(led_dev6, 0);
+    qdev_connect_gpio_out(gpio_dev[GPIO_B], 6, entreeLED6);
+    qemu_irq entreeLED7 = qdev_get_gpio_in(led_dev7, 0);
+    qdev_connect_gpio_out(gpio_dev[GPIO_B], 7, entreeLED7);
     
 }
 

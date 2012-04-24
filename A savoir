@@ -33,4 +33,6 @@ Controlées par le RCC_CR (registre mémoire) (Bible-p82)
 
 
 
-
+LED verte PB7
+LED bleue PB6
+Bouton PA0
