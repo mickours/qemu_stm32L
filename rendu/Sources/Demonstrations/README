@@ -1,0 +1,15 @@
+Il est important de prendre en compte certains comportements spécifiques à
+l'émulateur.
+
+Adresse de chargement:
+	Le composant "cortex-m3" de Qemu considère que la mémoire de la flash est
+	mappée sur les adresse 0x00000000 alors que son adresse réelle est 
+	0x80000000.
+	Il est alors impossible de chargé un programme sur la carte si celui-ci a 
+	été conçu pour se charger en 0x00000000
+	Il est aussi impossible d'émuler un programme sur Qemu si celui-ci a été
+	conçu pour se charger en 0x80000000.
+	Cette différente est visible dans les fichiers *.ld
+		stm32_flash_Qemu.ld : Qemu
+		stm32_flash_HW.ld   : Materiel
+	2 fichiers executables seront ainsi générés.
