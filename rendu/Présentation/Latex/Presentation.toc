@@ -1,0 +1,23 @@
+\beamer@endinputifotherversion {3.12pt}
+\select@language {french}
+\beamer@sectionintoc {1}{STM32L Discovery}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{Pr\IeC {\'e}sentation}{4}{0}{1}
+\beamer@subsectionintoc {1}{2}{Caract\IeC {\'e}ristiques}{5}{0}{1}
+\beamer@subsectionintoc {1}{3}{Utilisation}{7}{0}{1}
+\beamer@sectionintoc {2}{Qemu}{11}{0}{2}
+\beamer@subsectionintoc {2}{1}{Pr\IeC {\'e}sentation}{12}{0}{2}
+\beamer@subsectionintoc {2}{2}{Utilisation}{13}{0}{2}
+\beamer@subsectionintoc {2}{3}{Structure}{14}{0}{2}
+\beamer@sectionintoc {3}{Travail r\IeC {\'e}alis\IeC {\'e}}{17}{0}{3}
+\beamer@subsectionintoc {3}{1}{GPIO}{18}{0}{3}
+\beamer@subsectionintoc {3}{2}{LED}{20}{0}{3}
+\beamer@subsectionintoc {3}{3}{Bouton}{21}{0}{3}
+\beamer@subsectionintoc {3}{4}{Machine}{22}{0}{3}
+\beamer@subsectionintoc {3}{5}{Diff\IeC {\'e}rences avec la carte physique}{23}{0}{3}
+\beamer@sectionintoc {4}{D\IeC {\'e}monstration}{25}{0}{4}
+\beamer@subsectionintoc {4}{1}{GPIO Output}{26}{0}{4}
+\beamer@subsectionintoc {4}{2}{GPIO Input + Attente active}{27}{0}{4}
+\beamer@sectionintoc {5}{Conclusion}{28}{0}{5}
+\beamer@subsectionintoc {5}{1}{Prochaines \IeC {\'e}volutions}{29}{0}{5}
+\beamer@subsectionintoc {5}{2}{R\IeC {\'e}trospective}{30}{0}{5}
+\beamer@subsectionintoc {5}{3}{Questions}{31}{0}{5}

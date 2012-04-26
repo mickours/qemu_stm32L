@@ -1,0 +1,21 @@
+\BOOKMARK [2][]{Outline0.1}{STM32L Discovery}{}% 1
+\BOOKMARK [3][]{Outline0.1.1.4}{Pr\351sentation}{Outline0.1}% 2
+\BOOKMARK [3][]{Outline0.1.2.5}{Caract\351ristiques}{Outline0.1}% 3
+\BOOKMARK [3][]{Outline0.1.3.7}{Utilisation}{Outline0.1}% 4
+\BOOKMARK [2][]{Outline0.2}{Qemu}{}% 5
+\BOOKMARK [3][]{Outline0.2.1.12}{Pr\351sentation}{Outline0.2}% 6
+\BOOKMARK [3][]{Outline0.2.2.13}{Utilisation}{Outline0.2}% 7
+\BOOKMARK [3][]{Outline0.2.3.14}{Structure}{Outline0.2}% 8
+\BOOKMARK [2][]{Outline0.3}{Travail r\351alis\351}{}% 9
+\BOOKMARK [3][]{Outline0.3.1.18}{GPIO}{Outline0.3}% 10
+\BOOKMARK [3][]{Outline0.3.2.20}{LED}{Outline0.3}% 11
+\BOOKMARK [3][]{Outline0.3.3.21}{Bouton}{Outline0.3}% 12
+\BOOKMARK [3][]{Outline0.3.4.22}{Machine}{Outline0.3}% 13
+\BOOKMARK [3][]{Outline0.3.5.23}{Diff\351rences avec la carte physique}{Outline0.3}% 14
+\BOOKMARK [2][]{Outline0.4}{D\351monstration}{}% 15
+\BOOKMARK [3][]{Outline0.4.1.26}{GPIO Output}{Outline0.4}% 16
+\BOOKMARK [3][]{Outline0.4.2.27}{GPIO Input + Attente active}{Outline0.4}% 17
+\BOOKMARK [2][]{Outline0.5}{Conclusion}{}% 18
+\BOOKMARK [3][]{Outline0.5.1.29}{Prochaines \351volutions}{Outline0.5}% 19
+\BOOKMARK [3][]{Outline0.5.2.30}{R\351trospective}{Outline0.5}% 20
+\BOOKMARK [3][]{Outline0.5.3.31}{Questions}{Outline0.5}% 21
