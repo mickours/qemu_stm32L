@@ -168,7 +168,7 @@
 				\begin{itemize}
 					\item Emulation complète
 						\begin{itemize}
-							\item Intel
+							\item x86/x64
 							\item ARM
 							\item PowerPC
 							\item Sparc
@@ -187,6 +187,14 @@
 						\item Compilation du programme utilisateur
 						\item Lancement de Qemu avec le programme émulé
 					\end{itemize}
+					\begin{exampleblock}
+						qemu\_systeme\_arm
+						\begin{itemize}
+							\item -M stm32l152rbt6
+							\item -chardev xxx
+							\item -kernel /path/to/program
+						\end{itemize}
+					\end{exampleblock}
 				\end{block}
 			\end{frame}
 			
@@ -198,9 +206,9 @@
 					\includegraphics[scale=0.40]{img/shemaDevice.png}
 				\end{figure}
 				\begin{itemize}
-					\item Etat du composant (Device State)
 					\item Interfaces d'entrées (fils)
 					\item Interfaces de sorties (fils)
+					\item Etat du composant (Device State)
 					\item Gestion d'une zone mémoire déléguée
 					\item Enregistré dans Qemu: Accessible pour les machines
 				\end{itemize}
@@ -234,10 +242,10 @@
 					\item Bidirectionnelle
 					\item Fonctionnement
 						\begin{itemize}
-							\item Initialisation au lancement de Qemu
-							\item Connexion à l'initialisation de la machine
 							\item Fonction d'envoi
 							\item Handler de réception
+							\item Initialisation au lancement de Qemu
+							\item Connexion à l'initialisation de la machine
 						\end{itemize}
 				\end{itemize}
 			\end{frame}
@@ -256,13 +264,11 @@
 						\begin{itemize}
 							\item Implémentés
 								\begin{itemize}
-									\item Output (Push/Pull)
-									\item Input (Push/Pull)
+									\item Output
+									\item Input
 								\end{itemize}
 							\item Non implémentés
 								\begin{itemize}
-									\item Output (Open-drain)
-									\item Input (Open-drain)
 									\item Alternate function
 								\end{itemize}
 						\end{itemize}
@@ -320,19 +326,18 @@
 		\subsection{Différences avec la carte physique}
 			\begin{frame}
 				\frametitle{RCC}
-				Realtime Clock Control
+				Reset and Clock Control (Contrôle les horloges)
 				\begin{block}{ Procédure d'écriture sur une pin GPIO }
 					\begin{itemize}
-						\item Parametrage via les registres
 						\item Ecriture dans le registre "Output data"
-						\item La valeur sera recopiée sur la pin au prochain tick de la RCC
+						\item La valeur sera recopiée sur la pin au prochain tick d'horloge
 					\end{itemize}
 				\end{block}
 				\begin{alertblock}{ Problème }
-					Le module RCC n'a pas été implémenté dans Qemu
+					Les composants RCC et timers n'ont pas été implémentés dans Qemu
 				\end{alertblock}
 				\begin{exampleblock}{ Solution adoptée }
-					Notre implémentation des GPIO recopie la valeur sur la pin sans attendre le tick de la RCC
+					Notre implémentation des GPIO recopie la valeur sur la pin sans attendre le tick de l'horloge
 				\end{exampleblock}
 				
 			\end{frame}
@@ -341,7 +346,7 @@
 				\frametitle{Zones d'adresse}
 				\begin{block}{ Mapping d'adresses }
 					\begin{itemize}
-						\item Zone de boot pouvant être remappée en fonction des jumpers sur
+						\item Zone de boot pouvant être remappée en fonction des cavaliers sur
 							\begin{itemize}
 								\item SRAM: Pour les tests
 								\item Flash: Pour ecrire un programme persistant
