@@ -1,0 +1,16 @@
+############################################################
+# Execution du programme client
+############################################################
+
+I - Prérequis
+	Python2.7
+
+II - Execution
+	Executer la commande:
+		python2.7 ./UI.py
+
+III - Utilisation
+	Une fois l'interface cliente lancée, configurer les ports des chardev
+	utilisés pour la communication avec Qemu (ou laisser par défaut).
+	Cliquer sur le bouton "Lancer" pour mettre les sockets en écoute
+	Executer une émulation dans Qemu (Voir Demonstration/HOWTO)

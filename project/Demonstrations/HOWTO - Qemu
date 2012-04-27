@@ -1,0 +1,30 @@
+###########################################
+# Utilisation des démonstrations sur Qemu
+###########################################
+
+
+I - Attention
+	* Le programme client python doit être relancé entre chaque test
+	
+		
+II - Prérequis
+	* Qemu doit avoir été configuré et compilé (Voir Qemu/HOWTO)
+	* La suite de cross compilation arm-none-eabi doit être présente dans le
+	  système (variable PATH)
+		arm-none-eabi-objcopy
+		arm-none-eabi-ld
+		arm-none-eabi-gcc
+
+II - Utilisation des démonstrations
+	* Lancer le programme client (void Client/HOWTO)
+		Aller dans le répertoire Client
+		Executer la commande
+			python2.7 ./UI.py
+		Cliquer sur le bouton lancer pour mettre les sockets en écoute
+	* Lancer le script Execution.sh dans l'un des répertoires Demonstrations
+		Ce script va compiler le programme émulé, Qemu puis lancer Qemu
+		
+
+		
+		
+		
